@@ -319,3 +319,23 @@ closeBtn.addEventListener("click", () => {
   chatBoxContainer.style.display = "none";
 });
 
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let isMuted = true; // mulai dalam kondisi mute
+
+// biar gak auto main pas pertama (izin user)
+bgMusic.volume = 0.5;
+bgMusic.muted = isMuted;
+
+musicBtn.addEventListener("click", () => {
+  if (isMuted) {
+    bgMusic.play();
+    bgMusic.muted = false;
+    musicBtn.textContent = "🔊";
+  } else {
+    bgMusic.muted = true;
+    musicBtn.textContent = "🔇";
+  }
+  isMuted = !isMuted;
+});
