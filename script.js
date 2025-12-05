@@ -262,26 +262,212 @@ window.addEventListener('load', () => {
 
 
 
-const bgMusic = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
+// ... (Kode JS sebelumnya untuk AOS, Navbar, Project dll. tetap di atas)
 
-let isMuted = true; // mulai dalam kondisi mute
+// ====================================
+// === MUSIC PLAYER FUNCTIONALITY ===
+// ====================================
 
-// biar gak auto main pas pertama (izin user)
-bgMusic.volume = 0.5;
-bgMusic.muted = isMuted;
+(() => {
+    // 1. Ambil Elemen DOM
+    const audio = $('#bgMusic');
+    const triggerBtn = $('#musicTriggerBtn');
+    const modal = $('#musicControlModal');
+    const closeBtn = $('#closeModalBtn');
+    const playPauseBtn = $('#playPauseBtn');
+    const nextBtn = $('#nextBtn');
+    const prevBtn = $('#prevBtn');
+    const shuffleBtn = $('#shuffleBtn');
+    const progressBar = $('#progressBar');
+    const currentTimeEl = $('#currentTime');
+    const totalDurationEl = $('#totalDuration');
+    const volumeSlider = $('#volumeSlider');
+    const playlistList = $('#playlistList');
+    
+    // ELEMEN UNTUK TOGGLE PLAYLIST
+    const playlistToggleBtn = $('#playlistToggleBtn'); 
+    const playlistWrap = $('#playlistWrap'); // Container yang di-toggle
 
-musicBtn.addEventListener("click", () => {
-  if (isMuted) {
-    bgMusic.play();
-    bgMusic.muted = false;
-    musicBtn.textContent = "🔊";
-  } else {
-    bgMusic.muted = true;
-    musicBtn.textContent = "🔇";
-  }
-  isMuted = !isMuted;
-});
+    // Daftar Lagu (Diambil dari data-src di HTML)
+    const trackItems = $$('.track-item', playlistList);
+
+    const playlist = trackItems.map(item => ({
+        name: item.textContent,
+        src: item.dataset.src || 'bg-music.mp3' // Fallback aman
+    }));
+    
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+    let isShuffle = false;
+
+    // Fungsi Pembantu
+    const formatTime = (seconds) => {
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    };
+
+    const updatePlayPauseIcon = () => {
+        // Unicode untuk Pause (||) vs Play (▶)
+        playPauseBtn.innerHTML = isPlaying ? '&#x23F8;' : '&#x25B6;'; 
+    };
+
+    const updateActiveTrack = (index) => {
+        trackItems.forEach((item, i) => {
+            item.classList.toggle('active', i === index);
+            // Scroll ke lagu aktif hanya jika playlist terbuka
+            if (i === index && playlistWrap.style.display === 'block') {
+                 item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+    };
+
+    // 2. Fungsi Utama Player
+    const loadTrack = (index) => {
+        currentTrackIndex = index;
+        const track = playlist[currentTrackIndex];
+        audio.src = track.src;
+        updateActiveTrack(index);
+        
+        // Memuat metadata lagu (durasi)
+        audio.addEventListener('loadedmetadata', () => {
+            totalDurationEl.textContent = formatTime(audio.duration);
+            progressBar.max = audio.duration;
+            if (isPlaying) {
+                audio.play().catch(e => console.log('Autoplay prevented on track change:', e));
+            }
+        }, { once: true });
+
+        // Mulai play setelah load, jika sedang playing
+        if (isPlaying) audio.play().catch(e => console.log('Play failed:', e));
+    };
+
+    const playPause = () => {
+        if (isPlaying) {
+            audio.pause();
+            isPlaying = false;
+        } else {
+            // Coba putar, tangani jika autoplay diblokir
+            audio.play().then(() => {
+                isPlaying = true;
+            }).catch(e => {
+                console.log('Play failed, likely autoplay block:', e);
+                isPlaying = false;
+            });
+        }
+        updatePlayPauseIcon();
+    };
+
+    const skipTrack = (direction = 1) => {
+        let newIndex;
+        if (isShuffle) {
+            // Putar acak
+            do {
+                newIndex = Math.floor(Math.random() * playlist.length);
+            } while (newIndex === currentTrackIndex && playlist.length > 1);
+        } else {
+            newIndex = (currentTrackIndex + direction + playlist.length) % playlist.length;
+        }
+        
+        if (playlist.length > 0) {
+            loadTrack(newIndex);
+        }
+
+        if (isPlaying) audio.play();
+    };
+
+    // 3. EVENT LISTENERS
+    
+    // Trigger Modal (Titik Tiga)
+    triggerBtn.addEventListener('click', () => {
+        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close Modal (Tombol X)
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+    
+    // Kontrol Player
+    playPauseBtn.addEventListener('click', playPause);
+    nextBtn.addEventListener('click', () => skipTrack(1));
+    prevBtn.addEventListener('click', () => skipTrack(-1));
+
+    // Kontrol Shuffle
+    shuffleBtn.addEventListener('click', () => {
+        isShuffle = !isShuffle;
+        // Beri warna kuning (accent) jika shuffle aktif
+        shuffleBtn.style.color = isShuffle ? 'var(--accent)' : '#b3b3b3';
+    });
+    
+    // Kontrol Toggle Playlist (Garis Tiga Horizontal - &#x2261;)
+    playlistToggleBtn.addEventListener('click', (e) => {
+        const isHidden = playlistWrap.style.display === 'none' || playlistWrap.style.display === '';
+        
+        // Toggle tampilan Playlist dan Volume
+        playlistWrap.style.display = isHidden ? 'block' : 'none';
+        
+        // Beri highlight pada tombol saat playlist terbuka
+        e.target.style.color = isHidden ? 'var(--accent)' : '#b3b3b3';
+    });
+
+
+    // Audio Events
+    audio.addEventListener('timeupdate', () => {
+        progressBar.value = audio.currentTime;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    audio.addEventListener('ended', () => {
+        // Otomatis skip ke lagu berikutnya
+        skipTrack(1);
+    });
+
+    // Progress Bar (User drag)
+    progressBar.addEventListener('input', () => {
+        audio.currentTime = progressBar.value;
+    });
+
+    // Volume Slider
+    volumeSlider.addEventListener('input', () => {
+        audio.volume = volumeSlider.value;
+    });
+
+    // Playlist Click
+    trackItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            if (index !== currentTrackIndex) {
+                loadTrack(index);
+                isPlaying = true; // Langsung putar setelah ganti
+                updatePlayPauseIcon();
+            } else {
+                // Jika lagu yang sama diklik, toggle play/pause
+                playPause();
+            }
+            // Opsional: Tutup modal playlist setelah lagu diklik
+            if (playlistWrap.style.display === 'block') {
+                playlistToggleBtn.click(); 
+            }
+        });
+    });
+    
+    // Tutup modal saat user scroll
+    window.addEventListener('scroll', () => {
+        if (modal.style.display === 'block') {
+            modal.style.display = 'none';
+        }
+    });
+
+
+    // 4. Inisialisasi
+    if (playlist.length > 0) {
+        // Set Volume awal (dari slider value)
+        audio.volume = volumeSlider.value;
+        // Load track pertama saat halaman dimuat
+        loadTrack(0); 
+    }
+
+})();
 
 const chatbotToggle = document.getElementById("chatbot-toggle");
     const chatbotBox = document.getElementById("chatbot-box");

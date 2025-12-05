@@ -16,6 +16,15 @@
 </head>
 <body>
 
+  <audio id="bgMusic" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+    <source src="Feel_up.mp3" type="audio/mpeg">
+    <source src="langit_malam.mp3" type="audio/mpeg">
+    <source src="track-4.mp3" type="audio/mpeg">
+    <source src="track-5.mp3" type="audio/mpeg">
+    <source src="track-6.mp3" type="audio/mpeg">
+  </audio>
+
   <div id="intro-screen" class="intro-screen">
     <div class="waves-bg"></div>
     <div class="fish"></div>
@@ -41,6 +50,63 @@
         <li role="none"><a role="menuitem" class="nav-link" href="#about">About</a></li>
         <li role="none"><a role="menuitem" class="nav-link" href="#projects">Projects</a></li>
         <li role="none"><a role="menuitem" class="nav-link" href="#contact">Contact</a></li>
+      
+
+  <button id="musicTriggerBtn" class="music-trigger-btn" aria-label="Open Music Player" title="Music Player">
+    <i class="fas fa-ellipsis-v"></i>
+  </button>
+
+  <div id="musicControlModal" class="music-control-modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>PortSea Music</h3>
+        <button id="closeModalBtn" class="close-btn" aria-label="Close Player">&times;</button>
+      </div>
+
+      <div class="player-widget-popup">
+        <div class="player-controls-popup">
+          <button id="shuffleBtn" class="control-btn-popup shuffle-btn" aria-label="Shuffle" title="Shuffle">&#x267A;</button>
+          <button id="prevBtn" class="control-btn-popup" aria-label="Previous Track" title="Previous">&#x23EE;</button>
+          <button id="playPauseBtn" class="control-btn-popup play-pause-btn-popup" aria-label="Play" title="Play">
+            &#x25B6; 
+          </button>
+          <button id="nextBtn" class="control-btn-popup" aria-label="Next Track" title="Next">&#x23ED;</button>
+          
+          <button id="playlistToggleBtn" class="control-btn-popup" aria-label="Toggle Playlist" title="Toggle Playlist">
+            &#x2261; 
+          </button> 
+        </div>
+        
+        <div class="player-timeline-popup">
+          <span id="currentTime">0:00</span>
+          <input type="range" id="progressBar" value="0" min="0" max="100" aria-label="Music Progress">
+          <span id="totalDuration">3:38</span>
+        </div>
+      </div>
+
+      <div id="playlistWrap" style="display: none;"> 
+        <hr>
+        
+        <h4>Playlist</h4>
+        <div id="playlistContainer">
+          <ul id="playlistList">
+            <li data-track-index="0" class="track-item active" data-src="bg-music.mp3">1. Sea Breeze</li>
+            <li data-track-index="1" class="track-item" data-src="Feel_up.mp3">2. 新しい世界</li>
+            <li data-track-index="2" class="track-item" data-src="langit_malam.mp3">3. Langit Malam</li>
+            <li data-track-index="3" class="track-item" data-src="...">4. coming soon</li>
+            <li data-track-index="4" class="track-item" data-src="...">5. coming soon</li>
+            <li data-track-index="5" class="track-item" data-src="...">6. coming soon</li>
+          </ul>
+        </div>
+        
+        <div class="volume-control-popup">
+          <span>🔊 Volume:</span>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.7" aria-label="Volume Slider">
+        </div>
+      </div>
+    </div>
+  </div>
+
       </ul>
     </nav>
     <!-- mobile dim overlay when menu open -->
@@ -254,13 +320,6 @@
   </div>
 </div>
 
-<audio id="bgMusic" loop>
-  <source src="bg-music.mp3" type="audio/mpeg">
-</audio>
-
-<button id="musicBtn" class="music-toggle">
-  🔊
-</button>
 
   <!-- SCRIPTS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
