@@ -229,16 +229,25 @@
   <!-- BACK TO TOP -->
   <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
 
- <div id="chatbot-container">
-  <button id="chatbot-toggle">RAI</button>
+<!-- CHATBOT RAI -->
+<div id="chatbot-container">
 
+  <!-- Tombol buka -->
+  <button id="chatbot-toggle">💬 Chat dengan RAI</button>
+
+  <!-- Box Chat -->
   <div id="chatbot-box" style="display:none;">
+    
     <div id="chatbot-header">
-      <span>RAI Assistant</span>
+      <span>RAI Assistant 🤖</span>
       <button id="chatbot-close">x</button>
     </div>
+
+    <!-- Chat Body -->
     <div id="chatbot-messages"></div>
-    <form id="chatbot-form">
+
+    <!-- Form Input -->
+    <form id="chatbot-form" autocomplete="off">
       <input id="chatbot-input" type="text" placeholder="Tanya sesuatu..." />
       <button type="submit">Kirim</button>
     </form>
@@ -255,6 +264,7 @@
 
   <!-- SCRIPTS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="ai.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

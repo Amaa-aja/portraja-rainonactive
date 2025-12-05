@@ -261,63 +261,6 @@ window.addEventListener('load', () => {
 });
 
 
-// === Chatbot Handler ===
-const chatForm = document.querySelector("#chatbot-form");
-const chatInput = document.querySelector("#chatbot-input");
-const chatBox = document.querySelector("#chatbot-messages");
-
-chatForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const message = chatInput.value.trim();
-  if (!message) return;
-
-  // tampilkan pesan user
-  const userMsg = document.createElement("div");
-  userMsg.className = "chat user";
-  userMsg.textContent = message;
-  chatBox.appendChild(userMsg);
-
-  chatInput.value = "";
-  chatBox.scrollTop = chatBox.scrollHeight;
-
-  // kirim ke backend Node.js
-  try {
-    const res = await fetch("http://localhost:3030/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-    });
-
-    const data = await res.json();
-
-    // tampilkan balasan AI
-    const botMsg = document.createElement("div");
-    botMsg.className = "chat bot";
-    botMsg.textContent = data.reply || "Maaf, aku nggak bisa jawab itu 😅";
-    chatBox.appendChild(botMsg);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  } catch (err) {
-    console.error(err);
-  }
-});
-
-// === Chatbot Toggle ===
-const toggleBtn = document.querySelector("#chatbot-toggle");
-const chatBoxContainer = document.querySelector("#chatbot-box");
-const closeBtn = document.querySelector("#chatbot-close");
-
-// Buka / tutup lewat tombol utama
-toggleBtn.addEventListener("click", () => {
-  chatBoxContainer.style.display =
-    chatBoxContainer.style.display === "none" || !chatBoxContainer.style.display
-      ? "flex"
-      : "none";
-});
-
-// Tutup lewat tombol X
-closeBtn.addEventListener("click", () => {
-  chatBoxContainer.style.display = "none";
-});
 
 const bgMusic = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
@@ -339,3 +282,69 @@ musicBtn.addEventListener("click", () => {
   }
   isMuted = !isMuted;
 });
+
+const chatbotToggle = document.getElementById("chatbot-toggle");
+    const chatbotBox = document.getElementById("chatbot-box");
+    const chatbotClose = document.getElementById("chatbot-close");
+    const chatbotForm = document.getElementById("chatbot-form");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+    const chatbotInput = document.getElementById("chatbot-input");
+
+    let firstOpen = true;
+
+    // ADD MESSAGE TO CHAT WINDOW (memastikan class 'chat' terpakai)
+    function addMessage(msg, sender) {
+        const div = document.createElement("div");
+        const senderClass = sender === "rai" ? "bot" : "user";
+        div.className = `chat ${senderClass}`; 
+        div.innerText = msg;
+        chatbotMessages.appendChild(div);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+
+    // OPEN CHATBOT
+    chatbotToggle.onclick = () => {
+        chatbotBox.style.display = "flex";
+        chatbotToggle.style.display = "none"; 
+
+        if (firstOpen) {
+            setTimeout(() =>
+                addMessage("Halo aku RAI 👋 Siap bantu jelajahi website ini?", "rai")
+            , 400);
+            firstOpen = false;
+        }
+    };
+
+    // CLOSE CHATBOT
+    chatbotClose.onclick = () => {
+        chatbotBox.style.display = "none";
+        chatbotToggle.style.display = "block";
+    }
+
+    // HANDLE CHAT INPUT
+    chatbotForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const text = chatbotInput.value.trim();
+        if (!text) return;
+
+        addMessage(text, "user");
+        chatbotInput.value = ""; 
+
+        const response = RAI_Respond(text);
+
+        // Auto scroll to page if navigation response
+        if (response.includes("pindah ke bagian")) {
+            const section = response.split(" ")[4]; 
+            
+            setTimeout(() => {
+                const target = document.getElementById(section);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                }
+                addMessage(response, "rai");
+            }, 400);
+        } else {
+            setTimeout(() => addMessage(response, "rai"), 400);
+        }
+    });
