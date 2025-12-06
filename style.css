@@ -625,7 +625,7 @@ body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:#0f172a}
 .music-trigger-btn {
   position: fixed;
   top: 12px; /* Posisi di bawah Navbar */
-  right: 355px;
+  right: 360px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
