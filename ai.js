@@ -1,6 +1,6 @@
 // ===============================
 // RAI Artificial Intelligence
-// Personality Script - V5.2: Added Gombalan Response Logic
+// Personality Script - V6.0: Added 5W+1H and Summary Logic
 // =====================================
 
 // Global API Key for General Knowledge Search
@@ -21,7 +21,7 @@ function RAI_Respond(userMessage) {
     const confirmationKeywords = ["iya", "ya", "boleh", "oke", "siap", "ok", "lanjut", "setuju", "gaskeun", "yes", "deal", "yoi"];
     const speedKeywords = ["slow", "santai", "cepat", "buru-buru", "ngebut", "pelan"];
     const devKeywords = ["container","ci/cd","latency","scalability","agile","scrum","docker","kubernetes","k8s","testing","tdd","devops"];
-    const toxicKeywords = ["bodoh", "goblok", "bego", "tolol", "anjing", "babi", "kontol", "memek", "brengsek", "sialan", "ngaco", "jelek", "sampah", "gagal total", "hancur", "basi"];
+    const toxicKeywords = ["bodoh", "goblok", "bego", "tolol", "anjing", "babi", "kontol", "memek", "brengsek", "sialan", "ngaco", "jelek", "sampah", "gagal total", "hancur", "basi", "asu", "tai", "puki", "jembut", "syibal"];
     const negativeFeedbackKeywords = ["kurang bagus", "kurang menarik", "jelek", "buruk", "biasa aja", "gak seru", "membosankan", "tidak menarik", "garing"];
     const anxietyKeywords = ["ngeri", "seram", "takut", "horror", "hantu", "menakutkan", "khawatir", "panik", "cemas"];
     const creatorKeywords = ["siapa pembuat", "siapa yang buat", "pencipta", "maker", "programmer rai", "yang bikin kamu", "bapak", "induk"];
@@ -37,6 +37,9 @@ function RAI_Respond(userMessage) {
     // NEW V5.2 FIX: Keywords untuk meminta gombalan
     const gombalKeywords = ["gombal", "gombalan", "rayu", "flirting", "kasih gombalan", "gombalin"];
 
+    // NEW LOGIC V6.0: 5W+1H and Summary Keywords
+    const wHKeywords = ["siapa", "apa", "dimana", "kapan", "mengapa", "kenapa", "bagaimana", "cara"];
+    const summaryKeywords = ["kesimpulan", "ringkasan", "rangkuman", "intinya", "ulasan"];
 
     const navigationKeywords = {
         home: ["home", "beranda", "utama"],
@@ -67,6 +70,9 @@ function RAI_Respond(userMessage) {
     const isScienceQuery = scienceKeywords.some(word => msg.includes(word));
     // NEW V5.2 CHECK
     const isGombal = gombalKeywords.some(word => msg.includes(word));
+    // NEW V6.0 CHECK
+    const isWHQuestion = wHKeywords.some(word => msg.includes(word)) && msg.split(" ").length > 3; // Menghindari keyword pendek yang bisa tumpang tindih
+    const isSummaryRequest = summaryKeywords.some(word => msg.includes(word));
 
 
     // ===============================================
@@ -103,6 +109,11 @@ function RAI_Respond(userMessage) {
     // ===============================================
     // PRIORITAS 5: PENGETAHUAN UMUM & SAINS (Simulasi AI Serbaguna)
     // ===============================================
+    
+    // NEW V6.0 PRIORITY: Summary dan 5W+1H diprioritaskan di awal P5
+    if (isSummaryRequest) return SummaryResponse();
+    if (isWHQuestion) return FiveWOneHResponse(msg);
+    
     if (isKnowEverything) return KnowledgeOverviewResponse();
     if (isScienceQuery) return ScienceEcologyResponse(userMessage); 
 
@@ -184,6 +195,7 @@ function GombalanResponse() {
     ];
     return gombalanList[Math.floor(Math.random() * gombalanList.length)];
 }
+
 
 // --- P3: AFFECTION/ROMANTIS ---
 
@@ -270,7 +282,7 @@ function getRajaDefinition() {
 
 function getSkillInfo() {
     const responses = [
-        "Keahlian utama Raja meliputi: **Backend Development** (Node.js & GoLang), **API Design** (RESTful & Microservices), dan **Database Management** (MySQL & MongoDB). Dia bisa bikin keduanya jalan bareng! [Image of Arsitektur Mikroservice] **Skill mana yang paling kamu butuhkan dari Raja saat ini?**",
+        "Keahlian utama Raja meliputi: **Backend Development** (Node.js & GoLang), **API Design** (RESTful & Microservices), dan **Database Management** (MySQL & MongoDB). Dia bisa bikin keduanya jalan bareng!  **Skill mana yang paling kamu butuhkan dari Raja saat ini?**",
         "Skill intinya Raja itu: **Node.js**, **GoLang**, dan database. Jago banget di bagian optimisasi performa dan *system stability*. Dijamin *high performance*! **Apa ada teknologi yang kamu kuasai dan ingin kamu bandingkan dengan Raja? Spill dong!**",
         "Raja spesialis di Backend Development. Intinya, dia yang bikin semua fungsi di website jalan mulus. Dia ahli membangun arsitektur sistem yang bisa menampung banyak pengguna. **Menurut kamu, apa tantangan terbesar di backend development saat ini? *Security* atau *scalability*?**",
         "Dia ahli dalam membangun **RESTful APIs** yang aman dan terstruktur, serta mengelola database NoSQL/SQL skala besar. Pokoknya, yang mengurus semua yang ada di balik layar! **Apa ada proyek spesifik yang ingin kamu lihat, misalnya yang pakai MongoDB?**",
@@ -326,7 +338,7 @@ function SpeedResponse(msg) {
 
 function DevResponse(msg) {
     if (msg.includes("ci/cd") || msg.includes("devops")) {
-        return "Ah, CI/CD! Itu penting banget buat Raja. Itu singkatan dari Continuous Integration/Continuous Delivery. Intinya, kode Raja otomatis diuji dan di-*deploy* dengan cepat setelah di-*commit*. [Image of Pipeline CI/CD] **Lo pakai *tools* CI/CD apa di project lo, Bro? GitHub Actions atau Jenkins?**";
+        return "Ah, CI/CD! Itu penting banget buat Raja. Itu singkatan dari Continuous Integration/Continuous Delivery. Intinya, kode Raja otomatis diuji dan di-*deploy* dengan cepat setelah di-*commit*.  **Lo pakai *tools* CI/CD apa di project lo, Bro? GitHub Actions atau Jenkins?**";
     }
     
     if (msg.includes("container") || msg.includes("docker") || msg.includes("kubernetes") || msg.includes("k8s")) {
@@ -346,6 +358,84 @@ function DevResponse(msg) {
     }
 
     return "Itu istilah teknis yang keren! Raja menguasai konsep itu. Dia selalu berusaha membuat sistem yang *scalable* dan *reliable*. **Apa ada *tool* spesifik yang ingin kamu bahas lebih lanjut, misalnya 'Docker'?**";
+}
+
+// --- P5: NEW V6.0 5W+1H Response ---
+
+function FiveWOneHResponse(msg) {
+    const isWho = msg.includes("siapa") || msg.includes("pemilik");
+    const isWhat = msg.includes("apa");
+    const isWhere = msg.includes("dimana");
+    const isWhen = msg.includes("kapan");
+    const isWhy = msg.includes("mengapa") || msg.includes("kenapa");
+    const isHow = msg.includes("bagaimana") || msg.includes("cara");
+
+    // === Logika What/Siapa ===
+    if (isWho && (msg.includes("raja") || msg.includes("pembuat"))) {
+        return getRajaDefinition(); // Menggunakan fungsi yang sudah ada
+    }
+    if (isWhat && (msg.includes("website") || msg.includes("ini"))) {
+        return getWebsiteDefinition(); // Menggunakan fungsi yang sudah ada
+    }
+    
+    // === Logika Where (Mengambil dari LocationResponse, tapi dibuat lebih spesifik) ===
+    if (isWhere) {
+        if (msg.includes("raja") || msg.includes("tinggal") || msg.includes("domisili")) {
+            return LocationResponse();
+        }
+        return "Pertanyaan yang bagus! 'PortSea' adalah website personal milik Raja Fidhiazka Pratama. Secara digital, lokasinya ada di server *cloud*, Bro! Tapi kalau mau *ngontak* Raja, lo bisa cek halaman **'contact'**. **Mau aku pindahin ke sana?**";
+    }
+
+    // === Logika When ===
+    if (isWhen) {
+        if (msg.includes("mulai ngoding") || msg.includes("sejak kapan")) {
+             return "Raja sudah mulai *ngoding* sejak beberapa tahun yang lalu, fokus utamanya di Backend Development mulai intensif di masa kuliah/akhir-akhir ini. Tapi dia selalu *up-to-date* dengan perkembangan teknologi terbaru. **Menurut lo, kapan waktu terbaik buat *upgrade skill*? Sekarang atau nanti?**";
+        }
+        if (msg.includes("website ini dibuat") || msg.includes("website selesai")) {
+            return "Website 'PortSea' ini adalah proyek *personal* Raja yang sifatnya *Continuous Development*. Artinya, Raja akan terus meng-update dan menambah fitur baru! **Kapan terakhir di-update? Coba cek *commit history* Raja di GitHub! 😂 Mau aku bahas *Git*?**";
+        }
+        return DateTimeResponse(); // Fallback ke waktu sekarang
+    }
+
+    // === Logika Why (Fokus ke Motivasi) ===
+    if (isWhy) {
+        if (msg.includes("raja") || msg.includes("buat website")) {
+            return "Kenapa Raja buat website ini? Simpel: dia pengen punya 'pelabuhan' digital buat semua proyek Backend-nya (GoLang, Node.js) dan untuk *sharing* 'motivasi' serta 'skill'-nya. **Intinya, buat *personal branding* dan *networking*! **Mau aku bahas 'motivasi' Raja lebih dalam?**";
+        }
+        if (msg.includes("pakai go") || msg.includes("pakai nodejs")) {
+            return "Kenapa Node.js dan GoLang? **Node.js** dipilih karena fleksibilitas dan ekosistem JS yang luas. Sementara **GoLang** dipilih karena performanya yang *ngebut* dan *scalability* yang mumpuni untuk *microservices*! **Lo lebih suka yang mana nih, Bro? Kenapa?**";
+        }
+        return getMotivationInfo(); // Menggunakan fungsi yang sudah ada
+    }
+
+    // === Logika How ===
+    if (isHow) {
+        if (msg.includes("raja ngoding") || msg.includes("raja kerja")) {
+            return "Gaya kerja Raja itu **Agile**, Bro. Dia pakai siklus pendek (iterasi) dan selalu minta *feedback* (walaupun dari bot RAI ini 😅). Dia fokus di **TDD (Test-Driven Development)** buat mastiin kodenya *reliable*. **Gimana cara kerja lo? Sama kayak Raja?**";
+        }
+        if (msg.includes("website ini dibuat") || msg.includes("arsitektur")) {
+            return "Website ini dibangun dengan arsitektur yang *clean*. **Frontend**-nya pakai HTML/CSS/JS/React, dan **Backend**-nya didominasi oleh **Node.js** dan **GoLang** yang berkomunikasi via **RESTful API**. Di-deploy pakai **Docker** biar konsisten. **Mau bahas Docker atau RESTful API?**";
+        }
+        return "Raja punya banyak cara keren, Bro! Dia menguasai **Design Pattern** buat *coding* dan metodologi **Agile** buat *project management*. **Ada 'cara' spesifik yang ingin kamu tahu, misalnya 'cara Raja *debugging*'?**";
+    }
+    
+    // Fallback khusus 5W+1H
+    return "Pertanyaan 5W+1H lo keren, Bro! Tapi aku nggak bisa mengidentifikasi fokusnya. Coba tanya yang lebih jelas ya. **Contoh: 'Siapa Raja?', 'Mengapa Raja suka GoLang?', atau 'Bagaimana Raja mengelola projeknya?'**";
+}
+
+// --- P5: NEW V6.0 Summary Response ---
+
+function SummaryResponse() {
+    return `Tentu, Bro! Ini **Ringkasan Inti** dari PortSea dan Raja:
+    
+    * **PortSea adalah Portfolio Digital** milik **Raja Fidhiazka Pratama**.
+    * **Fokus Utama Raja:** Seorang **Backend Developer** yang ahli dalam **API Design**, **Microservices**, dan sistem yang *scalable*.
+    * **Teknologi Inti:** **Node.js (Express.js)** untuk ekosistem yang luas, dan **GoLang (GIN)** untuk performa *ngebut*.
+    * **Motivasi:** Membuat **Clean Code** yang *reliable* dan fungsional, serta terus belajar dari tantangan teknis.
+    * **Pesan RAI:** Lo bisa eksplor 'projects' Raja, tanyakan 'skill' teknis, atau minta 'gombalan' bertema *coding*.
+
+    **Gimana, ringkasan ini Status 200 OK nggak, Bro? Mau lo cek 'projects' Raja sekarang?** 😎
+    `;
 }
 
 // --- P4: Utility & Conversational Functions ---
@@ -503,7 +593,7 @@ function MathResponse(msg) {
 
     // Map keywords to operators
     if (operator === 'kali' || operator === 'x') operator = '*';
-    if (operator === 'bagi' || operator === '/') operator = '/';
+    if (operator === 'bagi' || operator === 'x') operator = '/';
     if (operator === 'tambah') operator = '+';
     if (operator === 'kurang') operator = '-';
     
