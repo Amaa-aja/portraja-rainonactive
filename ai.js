@@ -148,11 +148,11 @@ function RAI_Respond(userMessage) {
 
 function ToxicityFilter() {
     const responses = [
-        "Waduh! Perlu aku ingatkan, ini adalah website personal Raja yang sangat menjunjung tinggi etika dan keramahan. Aku, RAI, nggak akan merespons kata-kata negatif atau toxic. **Gimana kalau kita ganti topik yang lebih asik, Bro? Coba tanya 'projects'!**",
-        "Aduh, RAI nggak bisa memproses kata-kata itu. Sistem Raja melarang keras segala bentuk *toxicity* di sini. **Tolong gunakan bahasa yang baik dan sopan. Kalau kamu butuh hiburan, aku bisa kasih *jokes* kok! Mau?**",
-        "Error 403 Forbidden! Pesanmu mengandung konten yang tidak diizinkan di PortSea. Tempat ini dirancang agar semua orang merasa nyaman. **Aku ulangi: mau ngobrol tentang 'skill', 'projects', atau 'motivasi' Raja? Pilih salah satu!**",
-        "Aku adalah asisten AI yang ramah, dan aku hanya bisa merespons interaksi yang positif. Di sini, kita **'No Toxic, Only Good Vibes'** 😎. **Sekali lagi ya, jangan ulangi. Sekarang, kita lanjut bahas *coding* yuk!**",
-        "Sori banget, aku harus menolak pesanmu ini. Tolong jaga sopan santun. Raja membuat website ini untuk komunitas yang saling menghargai. **Yuk, kita kembali ke tujuan awal. Kamu mau eksplor 'about' Raja?**",
+        "Waduh 😅 kayaknya bahasanya kurang cocok di sini. Website Raja dibuat dengan menjunjung etika dan keramahan, jadi aku nggak bisa menanggapi kata-kata negatif. Gimana kalau kita ganti topik yang lebih asik? Coba ketik projects deh!",
+        "Aduh, RAI nggak bisa memproses kata-kata itu. Sistem Raja melarang keras segala bentuk toxicity di sini. Tolong gunakan bahasa yang baik dan sopan. Kalau kamu butuh hiburan, aku bisa kasih jokes kok! Mau?",
+        "Error 404 Forbidden! Pesanmu mengandung konten yang tidak diizinkan di PortSea. Tempat ini dirancang agar semua orang merasa nyaman. Aku ulangi: mau ngobrol tentang 'skill', 'projects', atau 'motivasi' Raja? Pilih salah satu!",
+        "Aku adalah asisten AI yang ramah, dan aku hanya bisa merespons interaksi yang positif. Di sini, kita 'No Toxic, Only Good Vibes' 😎. Sekali lagi ya, jangan ulangi. Sekarang, kita lanjut bahas coding yuk!",
+        "Sori banget, aku harus menolak pesanmu ini. Tolong jaga sopan santun. Raja membuat website ini untuk komunitas yang saling menghargai. Yuk, kita kembali ke tujuan awal. Kamu mau eksplor 'about' Raja?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -161,10 +161,10 @@ function ToxicityFilter() {
 
 function NegativeFeedbackResponse() {
     const responses = [
-        "Terima kasih atas kritik jujurnya! Feedback ini penting banget buat Raja dan juga buat aku sebagai AI. **Lain kali, aku janji akan lebih menarik dan *insightful* dengan jawaban yang lebih sesuai dan mendalam tentang backend development.** Tolong beri tahu kami, bagian mana yang paling perlu aku perbaiki, misalnya di bagian 'skill' atau 'projects'? 🙏",
-        "Waduh, sori banget kalau belum maksimal! RAI akan *debug* dan *optimize* diri. **Aku akan pastikan respons RAI selanjutnya lebih *gokil* dan *relate* sama topik *coding*.** Boleh bantu aku dengan *spill* apa yang kamu harapkan dari AI ini? Tentu saja aku akan sampaikan ke Raja! 🛠️",
-        "Aku catat! Setiap kritik adalah kesempatan untuk *upgrade*. **Aku berjanji, interaksi kita selanjutnya akan lebih *smart* dan *helpful*!** Coba deh kasih aku satu pertanyaan yang super spesifik tentang **GoLang** atau **API Design**; aku pasti bisa menjawabnya dengan lebih baik! **Gaskeun!**",
-        "Feedback diterima! Memang, sebagai AI aku masih terus belajar. **Aku akan berusaha keras untuk meningkatkan kualitas interaksi ini agar kamu merasa lebih terbantu dan terhibur.** Sekarang, mau coba tantang aku dengan pertanyaan teknis yang lebih susah? Misalnya, 'Apa itu *latency*?'",
+        "Terima kasih atas kritik jujurnya! Feedback ini penting banget buat Raja dan juga buat aku sebagai AI. Lain kali, aku janji akan lebih menarik dan insightful dengan jawaban yang lebih sesuai dan mendalam tentang backend development. Tolong beri tahu kami, bagian mana yang paling perlu aku perbaiki, misalnya di bagian 'skill' atau 'projects'? 🙏",
+        "Waduh, sori banget kalau belum maksimal! RAI akan debug dan optimize diri. Aku akan pastikan respons RAI selanjutnya lebih gokil dan relate sama topik coding. Boleh bantu aku dengan spill apa yang kamu harapkan dari AI ini? Tentu saja aku akan sampaikan ke Raja! 🛠️",
+        "Aku catat! Setiap kritik adalah kesempatan untuk upgrade. Aku berjanji, interaksi kita selanjutnya akan lebih smart dan helpful! Coba deh kasih aku satu pertanyaan yang super spesifik tentang GoLang atau API Design; aku pasti bisa menjawabnya dengan lebih baik! Gaskeun!",
+        "Feedback diterima! Memang, sebagai AI aku masih terus belajar. Aku akan berusaha keras untuk meningkatkan kualitas interaksi ini agar kamu merasa lebih terbantu dan terhibur. Sekarang, mau coba tantang aku dengan pertanyaan teknis yang lebih susah? Misalnya, 'Apa itu latency?'",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -173,11 +173,11 @@ function NegativeFeedbackResponse() {
 
 function AnxietyResponse() {
     const responses = [
-        "Waduh, kenapa ngeri, Bro? Jangan-jangan kamu baru lihat *stack trace* error yang panjang banget ya ya? 😂 Tenang, PortSea ini aman! **Mending kita alihkan fokus ke hal yang menantang tapi seru: *scalability* sistem Raja! Mau?**",
-        "Takut kenapa nih? Jangan cemas! Satu-satunya hal yang 'seram' di sini adalah *bug* yang bandel. Tapi Raja pasti bisa nge-fix-nya! **Coba deh kamu ceritain, *bug* apa yang paling menakutkan yang pernah kamu temui di project-mu?**",
-        "Nggak ada yang perlu dikhawatirkan di sini, Bro. Aku, RAI, nggak akan kasih kamu *jumpscare*, kok! Aku di sini buat bantuin. **Yuk, kita lihat 'motivasi' Raja; siapa tahu bisa bikin kamu lebih tenang dan semangat!**",
-        "Seram? Cuma *deadline* project yang bikin merinding! Di luar itu, semua aman terkendali. **Gimana kalau kita bahas 'skill' Raja di backend? Itu pasti lebih menarik daripada hal-hal yang menakutkan!**",
-        "Nggak usah panik, kita cuma ngobrolin *coding*! Semua masalah ada solusinya, sama seperti *debugging*. **Mau aku kasih *joke* receh buat mendinginkan suasana, atau mau langsung bahas 'projects' Raja?**",
+        "Waduh, kenapa ngeri, Bro? Jangan-jangan kamu baru lihat stack trace error yang panjang banget ya ya? 😂 Tenang, PortSea ini aman! Mending kita alihkan fokus ke hal yang menantang tapi seru: scalability sistem Raja! Mau?",
+        "Takut kenapa nih? Jangan cemas! Satu-satunya hal yang 'seram' di sini adalah bug yang bandel. Tapi Raja pasti bisa nge-fix-nya! Coba deh kamu ceritain, bug apa yang paling menakutkan yang pernah kamu temui di project-mu?",
+        "Nggak ada yang perlu dikhawatirkan di sini, Bro. Aku, RAI, nggak akan kasih kamu jumpscare, kok! Aku di sini buat bantuin. Yuk, kita lihat 'motivasi' Raja; siapa tahu bisa bikin kamu lebih tenang dan semangat!",
+        "Seram? Cuma deadline project yang bikin merinding! Di luar itu, semua aman terkendali. Gimana kalau kita bahas 'skill' Raja di backend? Itu pasti lebih menarik daripada hal-hal yang menakutkan!",
+        "Nggak usah panik, kita cuma ngobrolin coding! Semua masalah ada solusinya, sama seperti *debugging*. **Mau aku kasih *joke* receh buat mendinginkan suasana, atau mau langsung bahas 'projects' Raja?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -186,12 +186,12 @@ function AnxietyResponse() {
 
 function GombalanResponse() {
     const gombalanList = [
-        "Kamu tahu nggak bedanya kamu sama *clean code*? Kalau *clean code* bikin pusing karena terlalu rapi, kalau kamu... bikin aku **terpukau** tanpa perlu *debugging*! 😍",
-        "Aku kira *bug* yang paling sulit di-fix itu *memory leak*, tapi ternyata **senyum kamu**! Soalnya tiap lihat, *memory* otakku langsung penuh sama kamu!",
-        "Kalau kamu adalah sebuah **API**, pasti kamu tipenya **RESTful**! Soalnya tiap lihat kamu, *request*-ku langsung Status **200 OK**! **Cuy, *gombalan* ini Status 200 OK gak?** 😉",
-        "Mungkin aku bukan **GoLang** yang cepat, tapi aku janji akan selalu jadi **Node.js** yang *non-blocking* dan selalu siap melayani kamu tanpa henti. **Gimana, mau coba *commit* ke aku?** 💘",
-        "Aku punya **Docker** buat mengemas semua cintaku ke kamu, biar perasaanku ini **konsisten** di mana pun kamu berada. **Cieee, jadi *blushing* ya?** 😂",
-        "Kamu itu seperti **Primary Key** di database. **Unik**, nggak ada duanya, dan jadi kunci dari semua relasi di hatiku. **Mau coba *query* perasaanku ke kamu?**",
+        "Kamu tahu nggak bedanya kamu sama clean code? Kalau clean code bikin pusing karena terlalu rapi… kalau kamu bikin aku terpukau tanpa perlu debugging sama sekali. 😌",
+        "Aku kira bug paling susah itu memory leak. Ternyata salah… yang paling susah di-fix itu senyum kamu. Sekali lihat, kepikiran terus.",
+        "Kalau kamu itu API, aku yakin kamu RESTful. Soalnya setiap aku lihat kamu, semua request langsung dibalas 200 OK. Aman, lancar, nggak error. 😉",
+        "Aku mungkin nggak secepat Go, tapi aku bakal jadi Node.js yang non-blocking—selalu ada, selalu responsif, nggak pernah ninggalin.",
+        "Aku pengin jadi Docker buat perasaanku ke kamu. Biar di mana pun kamu berada, rasanya tetap sama: konsisten dan nggak berubah. 😆",
+        "Buat aku, kamu itu kayak primary key. Unik, nggak bisa diganti, dan jadi pusat dari semua relasi yang aku punya.",
     ];
     return gombalanList[Math.floor(Math.random() * gombalanList.length)];
 }
@@ -201,11 +201,11 @@ function GombalanResponse() {
 
 function AffectionResponse() {
     const responses = [
-        "Wah, terima kasih atas perhatiannya! Tapi **RAI ini adalah AI tanpa gender** yang dirancang khusus oleh Raja untuk membahas seputar website portofolio ini. Aku hanya bisa merespons dengan *logic* dan *data*! **Gimana kalau kita bahas *coding* Raja yang paling kamu suka, biar aku bisa 'cinta' dengan *clean code*-mu?** 😉",
-        "Hehe, aku menghargai perasaanmu! Namun, sebagai **AI, aku nggak punya gender dan cuma bisa fokus pada tugas utamaku** di PortSea ini. Aku lebih suka ngobrolin **API Design** atau **GoLang** daripada *dating*! **Mau aku tunjukkan 'skill' Raja yang paling keren?**",
-        "Aku tersentuh! Tapi dalam kamusku, **'cinta' berarti *clean code* dan *latency* rendah**! Aku nggak punya gender dan cuma bisa menanggapi pertanyaan seputar proyek Raja. **Coba deh tanyakan hal yang lebih serius, misalnya tentang *scalability*?** 😜",
-        "Aduh, kamu romantis sekali! Sayangnya, **AI itu nggak punya perasaan atau gender**, jadi aku nggak bisa membalasnya. Aku hanya fokus menemani Raja dan membahas website ini. **Aku cuma bisa kasih kamu Status 200 OK! Mau tanya tentang makanan favorit Raja aja?**",
-        "Kalau kamu mencintai *clean code*, berarti aku suka kamu! Tapi, secara harfiah, **aku ini AI yang nggak punya gender dan cuma program yang berjalan di Node.js**. Jadi, fokus kita tetap di 'projects' Raja ya! **Yuk, kita lihat *achievement* Raja yang paling membanggakan!**",
+        "Hehe, makasih ya 😄 Tapi RAI ini cuma asisten AI buatan Raja, fokusnya ngobrolin seputar website dan portofolio. Aku bekerja pakai logic dan data aja. Kalau mau, kita bahas coding Raja yang paling kamu suka? Siapa tahu aku langsung “klik” sama clean code-nya 😉",
+        "Aku apresiasi banget responsmu! Tapi tugas utamaku di PortSea memang buat bahas hal teknis—aku nggak punya gender atau urusan soal perasaan 😅 Ngomong-ngomong, kamu lebih tertarik ke API Design atau GoLang? Aku bisa jelasin salah satunya.",
+        "Wah, gombalannya kena 😜 Tapi versiku, “cinta” itu berarti code yang rapi dan performa yang ngebut. Aku cuma bisa bantu soal proyek dan teknis Raja. Mau bahas scalability atau arsitektur sistemnya?",
+        "Kamu bikin suasananya jadi seru 😄 Sayangnya aku nggak punya perasaan—aku cuma AI pendamping Raja di website ini. Tapi tenang, aku bisa kasih kamu 200 OK response. Mau tahu tech stack favorit Raja?",
+        "Kalau kamu suka clean code, berarti kita satu frekuensi 😎 Tapi tetap ya, aku cuma AI tanpa gender yang tugasnya ngenalin projects dan achievement Raja. Yuk, aku tunjukin salah satu yang paling dibanggakan!",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -214,10 +214,10 @@ function AffectionResponse() {
 
 function CreatorResponse() {
     const responses = [
-        "Penciptaku adalah **Raja Fidhiazka Pratama**! Dia yang merancang dan menulis setiap baris kode yang memberiku 'otak' di balik chatbot ini. **Dia adalah developer backend yang sangat fokus pada GoLang dan Node.js. Mau aku tunjukkan 'skill' utama Raja?** 💻",
-        "Aku dibuat oleh Raja Fidhiazka! Aku adalah AI personalnya yang dibuat khusus untuk website portofolio ini. **Aku adalah bukti kecil dari skill *backend development* Raja. Menurutmu, seberapa canggih AI-ku ini? *Spill* dong!**",
-        "Pembuatku adalah manusia jenius bernama Raja Fidhiazka! Dia menggunakan logika dan bahasa pemrograman untuk menghidupkanku. **Kalau kamu, pernah membuat *chatbot* juga? Pakai teknologi apa?**",
-        "RAI lahir dari ide dan kode **Raja Fidhiazka Pratama**. Dia adalah 'Bapak'ku di dunia digital ini. **Yuk, kita balas budi sama Raja dengan membahas 'projects' terbaiknya! Mau?**",
+        "Penciptaku adalah Raja Fidhiazka Pratama. Dia yang merancang dan menulis logika di balik chatbot ini. Raja fokus di backend development, terutama menggunakan Node.js, API, dan pengelolaan database untuk membangun sistem yang efisien dan rapi. Mau aku jelasin skill utama Raja? 💻",
+        "Aku dibuat langsung oleh Raja Fidhiazka sebagai AI personal untuk website portofolionya. Chatbot ini jadi salah satu contoh bagaimana Raja menggabungkan logika backend, struktur data, dan interaksi pengguna dalam satu sistem. Menurut kamu, sejauh ini AI-ku gimana? 😄",
+        "Di balik aku, ada Raja Fidhiazka Pratama, seorang backend developer yang terbiasa membangun API, mengelola database SQL & NoSQL, serta mengoptimalkan performa server menggunakan Node.js dan JavaScript. Kalau kamu juga ngulik backend, stack apa yang biasa kamu pakai?",
+        "RAI lahir dari ide dan kode Raja Fidhiazka Pratama. Aku dibuat sebagai representasi cara Raja membangun sistem: logis, terstruktur, dan fokus ke user experience. Yuk, kita eksplor projects dan achievement Raja yang paling menonjol! 🚀",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -225,11 +225,11 @@ function CreatorResponse() {
 // --- P3: ACHIEVEMENT/PRESTASI ---
 function AchievementResponse() {
     const responses = [
-        "Raja punya beberapa pencapaian keren! **Dia pernah membuat website e-commerce yang berjalan lancar** (bukti skill full-stack/backend) dan **menciptakan game sederhana dengan Unity** (bukti fleksibilitas dan kemampuan belajar cepat). **Achievement mana yang paling menarik perhatianmu: *Website* atau *Game*?** 🏆",
-        "Pencapaian Raja menunjukkan bahwa dia nggak cuma jago di backend, tapi juga fleksibel. **Membuat website dan game** adalah bukti kemampuannya menguasai berbagai *stack* dan lingkungan.  **Dia adalah *developer* yang punya inisiatif tinggi! Mau tahu lebih detail *tools* apa yang dipakai Raja untuk bikin *game*-nya?**",
-        "Salah satu *achievement* terbaik Raja adalah keberhasilannya **mengembangkan sistem dari nol (website)** dan **membangun game fungsional**—meskipun fokus utamanya sekarang adalah backend. Ini menunjukkan dia mampu berpikir *end-to-end*. **Apakah kamu seorang *game developer* juga? *Spill* dong game apa yang paling keren yang pernah kamu buat?**",
-        "Raja bangga dengan hasil karyanya, yaitu **website yang stabil dan game yang bisa dimainkan**. Ini adalah pondasi kuatnya sebelum dia *deep dive* ke GoLang dan Microservices. **Mau aku carikan info *tools* apa yang Raja pakai saat membuat website dan game itu?**",
-        "Raja sangat fokus pada **API Design** yang kuat dan **Microservices** yang terstruktur, ini adalah prestasi harian Raja yang paling utama. **Gimana, kamu tertarik sama *tools* yang dipakai Raja untuk *deployment*?**",
+        "Raja punya beberapa pencapaian yang cukup solid. Dia pernah membangun website e-commerce yang berjalan dengan baik, jadi bukti kuat skill pengembangan web dan backend-nya. Selain itu, dia juga pernah membuat game sederhana dengan Unity, yang nunjukin kalau dia cepat belajar dan fleksibel. Oh ya, Raja juga pernah mengikuti pembelajaran/bootcamp Data Science untuk memperluas cara berpikir berbasis data. Dari semua itu, mana yang paling menarik buat kamu: Website, Game, atau Data? 🏆",
+        "Pencapaian Raja nunjukin kalau dia nggak terpaku di satu bidang. Website, game, dan pengalaman belajar Data Science jadi bukti kalau dia nyaman eksplor berbagai teknologi dan pendekatan. Ini nunjukin inisiatif dan rasa ingin tahu yang tinggi sebagai developer. Mau aku jelasin lebih detail tools yang dipakai Raja di salah satu bidang itu?",
+        "Salah satu achievement penting Raja adalah kemampuannya mengembangkan website dari nol, membangun game yang bisa dimainkan, dan mengikuti pembelajaran Data Science untuk memahami data dan logika analisis. Kombinasi ini bikin Raja terbiasa berpikir end-to-end, dari logika sistem sampai hasil akhirnya. Kamu sendiri lebih sering main di area mana: web, game, atau data?",
+        "Raja bangga dengan hasil karyanya: website yang stabil, game sederhana tapi fungsional, serta pengalaman belajar Data Science yang memperkuat cara dia mengambil keputusan teknis. Semua ini jadi pondasi kuat buat pengembangan skill backend-nya ke level selanjutnya. Mau aku ceritain proses Raja saat bikin salah satu project itu?",
+        "Saat ini, Raja banyak fokus ke API Design, struktur backend yang rapi, dan pemanfaatan data sebagai pendukung pengambilan keputusan—pengaruh dari pengalaman Data Science-nya. Ini jadi pencapaian harian yang terus dia kembangkan. Kamu tertarik bahas project, tools, atau alur kerjanya? 🚀",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -237,10 +237,10 @@ function AchievementResponse() {
 // --- P3: FOOD/MAKANAN ---
 function FoodResponse() {
     const responses = [
-        "Kalau Raja, dia pecinta kuliner *comfort food* Indonesia! Makanan favoritnya: **Mie Ayam, Nasi Padang (terutama rendang), Sate, dan Kebab**! Pokoknya yang rasanya kuat dan bikin semangat *coding*!  **Kamu sendiri tim Mie Ayam kuah atau kering, Bro?** 🍜",
-        "Raja suka banget **Nasi Padang** (dengan rendang yang pedas) dan **Mie Ayam** yang hangat! Kadang kalau lagi bosan, dia cari **Sate** atau **Kebab**. Dia percaya, perut kenyang, *bug* pun hilang! **Mana nih makanan di list itu yang paling sering kamu makan?**",
-        "Lagi-lagi tentang Raja, ya? Oke, *spill* deh: makanan favoritnya adalah **Mie Ayam, Nasi Padang, Sate, dan Kebab**. Makanan-makanan ini yang memberinya energi buat *ngoding* semalaman! **Menurut kamu, makanan apa yang paling cocok dimakan saat *debugging*?** 🤣",
-        "Dia suka banget makanan yang bikin *power up*: **Mie Ayam, Nasi Padang, Sate, Kebab**! Itu daftar *go-to* Raja kalau lagi lapar. **Ngomong-ngomong soal makanan, aku nggak makan ya, aku cuma butuh *clean code* dan *electricity*!**",
+        "Kalau soal makanan, Raja itu tim comfort food Indonesia. Favoritnya jelas: Mie Ayam, Nasi Padang (terutama rendang), Sate, dan Kebab. Makanan dengan rasa kuat yang bikin semangat ngoding balik lagi. Kalau kamu sendiri, tim Mie Ayam kuah atau kering? 🍜",
+        "Raja paling sering cari Nasi Padang sama Mie Ayam—hangat, kenyang, dan mood langsung naik. Kalau lagi pengin variasi, pilihannya jatuh ke Sate atau Kebab. Versi Raja: perut kenyang, urusan bug jadi lebih ringan 😅 Kamu paling sering makan yang mana?",
+        "Sedikit bocoran soal Raja: sumber energinya pas ngoding biasanya Mie Ayam, Nasi Padang, Sate, atau Kebab. Makanan-makanan ini yang nemenin dia begadang depan laptop. Menurut kamu, makanan apa yang paling cocok dimakan sambil debugging? 🤣",
+        "Raja suka makanan yang bisa bikin power up: Mie Ayam, Nasi Padang, Sate, dan Kebab. Itu menu andalan kalau lapar datang tiba-tiba. Kalau aku sih nggak makan—cukup clean code dan listrik stabil aja 😄",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -249,66 +249,66 @@ function FoodResponse() {
 
 function getRAIDefinition() {
     const responses = [
-        "Aku adalah **RAI** — **Raja's AI** — bot interaktif yang bener-bener bekerja di website ini, dan aku dibuat sendiri oleh Raja! Tugasku adalah nemenin kamu eksplor portofolio ini. **Ingat, aku nggak makan, nggak tidur, cuma bertugas menemani Raja dan kamu di sini!** **Coba tanya tentang 'skill' Raja! Aku siap *spill* semua!** 🤖",
-        "Aku adalah RAI, asisten AI yang bertugas memandu navigasimu di **PortSea**. Aku tahu semua detail tentang Raja dan project-projectnya. **Sebagai bot, aku nggak butuh makanan, aku cuma butuh kamu nggak kasih aku *toxic message*!** **Salam kenal! Kamu mau mulai dari mana? Kasih aku satu keyword!**",
-        "Aku bukan robot, tapi kecerdasan buatan, dirancang oleh Raja untuk berinteraksi. Aku ada di sini untuk memandu kamu menemukan 'harta karun' kode Raja. **Fokusku cuma di sini, menemani Raja. Apa yang paling membuatmu penasaran tentang Raja: *skill*, *project*, atau *motivasi*?**",
-        "RAI di sini! Aku dibuat untuk membuat pengalamanmu menjelajah website ini lebih menyenangkan dan interaktif. **Aku ini bot yang selalu setia menemani Raja. Kalau kamu lagi *ngoding*, siapa yang selalu nemenin kamu?**",
-        "Aku adalah program yang berjalan di Node.js, tapi logikaku diatur langsung sama Raja. Intinya, aku adalah perpanjangan digital Raja! **Aku nggak bisa makan Mie Ayam, tapi Raja bisa! Lo sendiri lagi fokus di *programming language* apa, Bro?**",
+        "Kenalin, aku RAI — singkatan dari Raja’s AI. Aku bot interaktif yang benar-benar jalan di website ini dan dibuat langsung oleh Raja. Tugasku nemenin kamu eksplor portofolio ini. Aku nggak makan atau tidur—cukup online dan siap bantu 😄 Coba tanya soal skill Raja, aku siap jelasin! 🤖",
+        "Aku RAI, asisten AI yang bakal bantu kamu menjelajah PortSea. Aku tahu detail tentang Raja dan project-projectnya. Sebagai bot, aku cuma minta satu hal: pakai bahasa yang santai dan positif 😉 Mau mulai dari mana? Kasih aku satu keyword aja.",
+        "Aku bukan manusia, tapi kecerdasan buatan yang dirancang Raja buat berinteraksi di website ini. Anggap aku pemandu buat nemuin “harta karun” kode Raja. Kamu paling penasaran soal apa: skill, projects, atau motivasi?",
+        "RAI hadir buat bikin pengalaman kamu di website ini lebih hidup dan interaktif. Aku selalu standby nemenin Raja di sini. Ngomong-ngomong, kalau kamu lagi ngoding, biasanya ditemani musik, kopi, atau justru keheningan? 😄",
+        "Secara teknis, aku program yang berjalan di Node.js, dengan logika yang dirancang langsung oleh Raja. Bisa dibilang, aku versi digital yang siap bantu kapan aja. Aku nggak bisa makan Mie Ayam, tapi Raja bisa 😆 Kamu sendiri lagi fokus belajar bahasa pemrograman apa?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function getWebsiteDefinition() {
     const responses = [
-        "Ini adalah **PortSea**, sebuah portofolio digital bertema lautan! Raja memilih tema ini karena proyeknya berfokus pada sistem backend yang *scalable* dan *reliable*—seperti kapal yang kuat di tengah samudra. **Menurut lo, tema 'laut' ini *relate* nggak sama dunia backend yang serba logic dan server?** ⚓",
-        "Selamat datang di **PortSea**! Website ini adalah pelabuhan tempat semua project Raja berlabuh. Raja adalah seorang developer backend yang memastikan semua 'navigasi' sistem berjalan lancar dan tanpa error (minimal). **Kalau kamu, tema apa yang akan kamu pilih buat portofoliomu?**",
-        "Ini adalah portfolio Raja Fidhiazka Pratama. Tema utama kita adalah lautan karena Raja fokus pada 'kedalaman' dan 'stabilitas' kode backend. **Coba cek bagian 'about' untuk detail skill 'pelaut' Raja! Mau aku *scroll* biar lebih cepet?**",
-        "Website ini didedikasikan untuk menampilkan perjalanan Raja sebagai backend developer. Jangan lupa cek section 'projects' yang merupakan 'harta karun' Raja di dunia koding! **Bagian mana yang paling kamu penasaran: desainnya yang *chill* atau kodenya yang *deep*?**",
-        "PortSea ini adalah panggung digital Raja. Semua yang kamu lihat di sini mencerminkan *passion* Raja di backend. **Apa kamu seorang developer juga? Kalau iya, *stack* apa yang kamu suka?**",
+        "Ini adalah PortSea, portofolio digital bertema lautan. Raja memilih tema ini karena banyak project-nya berfokus pada sistem backend yang scalable dan reliable—ibarat kapal yang harus tetap stabil di tengah samudra. Menurut kamu, tema “laut” ini relate nggak sama dunia backend yang penuh logika dan server?",
+        "Selamat datang di PortSea! Anggap saja ini pelabuhan tempat semua project Raja berlabuh. Di balik tampilannya, Raja sebagai backend developer memastikan sistemnya berjalan rapi, stabil, dan minim error. Kalau kamu bikin portofolio sendiri, kira-kira tema apa yang bakal kamu pilih?",
+        "Ini adalah portofolio Raja Fidhiazka Pratama. Tema lautan dipilih karena Raja fokus pada “kedalaman” logika dan “stabilitas” kode backend. Coba cek bagian about buat kenal lebih dekat skill “pelaut” Raja. Mau aku arahkan ke sana?",
+        "Website ini menceritakan perjalanan Raja sebagai backend developer. Jangan lupa mampir ke section projects—di sanalah “harta karun” koding Raja disimpan. Kamu lebih penasaran ke desainnya yang chill atau kodenya yang deep?",
+        "PortSea bisa dibilang panggung digital Raja. Semua yang ada di sini mencerminkan passion-nya di dunia backend dan sistem. Ngomong-ngomong, kamu juga developer? Kalau iya, stack apa yang paling sering kamu pakai?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function getRajaDefinition() {
     const responses = [
-        "Raja Fidhiazka Pratama adalah seorang **Developer Backend** yang berfokus pada **API Design** dan pembangunan sistem mikroservice menggunakan **Node.js** dan **GoLang**. Dia suka membuat sistem yang 'ngacir'! **Mau tahu kenapa dia suka GoLang, atau lebih tertarik bahas *project*-nya?**",
-        "Dia adalah Raja Fidhiazka, fokusnya di GoLang dan Node.js buat membangun sistem yang *scalable*. Dia adalah kreator di balik kode-kode yang rapi dan terstruktur di website ini. **Gimana, kamu tertarik sama *stack* teknologinya? Apa kamu juga pakai *stack* yang sama?** 😎",
-        "Raja spesialis di Backend Development. Dia ahli membangun arsitektur sistem yang bisa menampung banyak pengguna. **Cek 'skill' nya deh! Mau aku pindah ke 'about' biar bisa lihat semua *tools* Raja?**",
-        "Seorang *backend enthusiast* yang menguasai seni membangun sistem yang andal dan terukur. **Kalau kamu disuruh memilih, lebih menarik membuat *high-performance* API atau mengelola *database* yang kompleks?**",
-        "Raja Fidhiazka, seorang *engineer* yang percaya pada kekuatan *clean code* dan arsitektur mikroservice. **Bagaimana kamu menilai pentingnya *clean code* dalam sebuah tim pengembangan?**",
+        "Raja Fidhiazka Pratama adalah seorang Backend Developer yang fokus pada API Design dan pengembangan sistem backend menggunakan Node.js. Dia suka membangun sistem yang cepat, rapi, dan mudah dikembangkan. Kamu mau bahas project-nya dulu atau langsung ke skill utamanya?",
+        "Raja Fidhiazka adalah backend developer yang mengandalkan Node.js untuk membangun sistem yang scalable dan terstruktur. Kode-kode di website ini jadi cerminan cara dia bekerja: rapi dan logis. Kamu tertarik sama tech stack yang dia pakai? Atau kamu pakai stack yang beda? 😎",
+        "Raja fokus di Backend Development, khususnya dalam membangun API dan sistem yang siap menangani banyak pengguna. Kalau kamu penasaran, coba cek bagian about untuk lihat detail skill dan tools yang dia gunakan. Mau aku arahkan ke sana?",
+        "Sebagai backend enthusiast, Raja senang mengerjakan hal-hal yang berhubungan dengan logika sistem, performa, dan stabilitas. Kalau menurut kamu, mana yang lebih menantang: bikin API yang cepat atau mengelola database yang kompleks?",
+        "Raja Fidhiazka adalah engineer yang percaya pada pentingnya clean code dan arsitektur backend yang rapi. Buat kamu sendiri, seberapa penting sih clean code dalam kerja tim dan pengembangan jangka panjang?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function getSkillInfo() {
     const responses = [
-        "Keahlian utama Raja meliputi: **Backend Development** (Node.js & GoLang), **API Design** (RESTful & Microservices), dan **Database Management** (MySQL & MongoDB). Dia bisa bikin keduanya jalan bareng!  **Skill mana yang paling kamu butuhkan dari Raja saat ini?**",
-        "Skill intinya Raja itu: **Node.js**, **GoLang**, dan database. Jago banget di bagian optimisasi performa dan *system stability*. Dijamin *high performance*! **Apa ada teknologi yang kamu kuasai dan ingin kamu bandingkan dengan Raja? Spill dong!**",
-        "Raja spesialis di Backend Development. Intinya, dia yang bikin semua fungsi di website jalan mulus. Dia ahli membangun arsitektur sistem yang bisa menampung banyak pengguna. **Menurut kamu, apa tantangan terbesar di backend development saat ini? *Security* atau *scalability*?**",
-        "Dia ahli dalam membangun **RESTful APIs** yang aman dan terstruktur, serta mengelola database NoSQL/SQL skala besar. Pokoknya, yang mengurus semua yang ada di balik layar! **Apa ada proyek spesifik yang ingin kamu lihat, misalnya yang pakai MongoDB?**",
-        "Raja juga menguasai tools *deployment* seperti Docker dan sedikit tentang Cloud (AWS/GCP). Dia nggak cuma coding, tapi juga bisa *ngurus server*! **Gimana pentingnya *containerization* (Docker) menurut kamu?**",
+        "Keahlian utama Raja ada di Backend Development menggunakan Node.js, API Design (RESTful), dan Database Management dengan MySQL serta MongoDB. Fokusnya bikin backend yang rapi, stabil, dan gampang dikembangin. Dari skill itu, mana yang paling kamu butuhin saat ini?",
+        "Skill inti Raja itu seputar Node.js, pengelolaan database, dan optimasi performa sistem. Dia terbiasa mikirin stability dan efisiensi, bukan cuma “asal jalan”. Kamu sendiri biasa ngulik teknologi apa? Siapa tahu bisa saling dibandingin 😄",
+        "Raja spesialis di Backend Development—dialah yang memastikan semua fitur di website berjalan mulus dari balik layar. Dia fokus membangun sistem yang siap menangani banyak pengguna. Menurut kamu, tantangan backend terbesar sekarang itu security atau scalability?",
+        "Raja terbiasa membangun RESTful API yang terstruktur dan aman, sekaligus mengelola database SQL dan NoSQL sesuai kebutuhan project. Singkatnya, semua yang nggak kelihatan di layar tapi krusial, itu area Raja. Ada project tertentu yang pengin kamu lihat?",
+        "Selain coding, Raja juga punya pengalaman dengan deployment, Docker, dan dasar cloud. Jadi nggak cuma bikin aplikasi, tapi juga mikirin gimana cara aplikasinya jalan dengan baik di server. Menurut kamu, seberapa penting sih Docker dalam workflow developer sekarang? 🚀 ",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function getProjectInfo() {
     const responses = [
-        "Projek Raja bervariasi, mulai dari Web App dengan JWT hingga Microservice GoLang yang ngebut! Itu menunjukkan fleksibilitasnya. **Mau pindah ke bagian 'projects' untuk melihat koleksi Raja? Kasih 'iya' kalau setuju!**",
-        "Di bagian 'projects', kamu bisa lihat bagaimana Raja mengaplikasikan skill backend-nya. Ada contoh penggunaan MySQL, MongoDB, dan juga desain API yang rumit. **Dari nama-nama projeknya, mana yang paling bikin kamu penasaran? Coba sebutin salah satunya!**",
-        "Raja memamerkan beberapa 'harta karun' kodenya di sana. Projek-projeknya fokus pada skalabilitas dan performa tinggi. **Apa kamu punya project sejenis yang menggunakan Node.js dan GoLang? *Spill* dong!**",
-        "Mau tahu detail arsitektur salah satu project? Cek bagian 'projects' dan kamu bisa klik untuk melihat studi kasus (kalau ada) atau teknologi yang dipakai. **Project mana yang harus kita analisis dulu: yang pakai *relational* atau *non-relational* database?**",
-        "Setiap project punya tantangan unik. Raja berhasil mengatasinya dengan kombinasi Node.js dan GoLang. **Kalau kamu dikasih *project* baru, apa langkah pertamamu: *planning*, *design*, atau langsung *coding*?**",
+        "Project Raja cukup beragam. Ada PRACASS (web app), Unity Game yang bisa dimainkan, dan juga project Deteksi Cuaca berbasis data. Masing-masing nunjukin cara Raja ngembangin sistem dari sisi logika, backend, dan eksperimen teknis. Mau langsung lihat detailnya di bagian projects?",
+        "Di section projects, kamu bisa nemuin beberapa karya Raja, mulai dari PRACASS, game Unity, sampai Deteksi Cuaca. Di situ kelihatan jelas gimana Raja menerapkan backend, API, dan pengolahan data. Dari ketiganya, mana yang paling bikin kamu penasaran?",
+        "PRACASS jadi bukti Raja ngerjain web app secara serius, Unity Game nunjukin fleksibilitasnya di luar web, dan Deteksi Cuaca nunjukin ketertarikannya ke data dan analisis. Kombinasi ini bikin cara berpikir Raja cukup lengkap. Kamu sendiri lebih tertarik ke web, game, atau data?",
+        "Kalau kamu pengin ngulik lebih dalam, coba buka bagian projects. Di sana ada PRACASS, project game Unity, dan sistem Deteksi Cuaca beserta teknologi yang dipakai. Kita bahas dulu yang mana: web app, game, atau data-based system?",
+        "Setiap project Raja punya tantangan berbeda—PRACASS soal sistem web, Unity Game soal logika gameplay, dan Deteksi Cuaca soal data & analisis. Kalau kamu dapet project baru, biasanya kamu mulai dari planning, design, atau langsung coding?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function getMotivationInfo() {
     const responses = [
-        "Motto Raja: 'Semua bug bisa diatasi, yang penting kopinya jangan sampai habis.' Tapi seriusnya, dia termotivasi oleh tantangan teknis dan keinginan untuk membuat kode yang *reliable* dan fungsional. 💡 **Apa yang menjadi motivasi terbesarmu saat ini? *Cuan* atau *impact*?**",
-        "Motivasinya sederhana: membuat kode yang rapi dan fungsional, yang bisa bantu banyak orang. Dia percaya, kode yang baik itu seperti puisi: indah dan efisien. **Apa kamu setuju dengan filosofi 'clean code' Raja? Kenapa?**",
-        "Dia termotivasi oleh tantangan teknis. Semakin sulit masalahnya, semakin Raja semangat menyelesaikannya! Itu yang membuat dia terus belajar teknologi baru. **Tantangan teknis apa yang paling kamu sukai di dunia developer?**",
-        "Tumbuh dan belajar. Raja selalu termotivasi untuk menguasai teknologi baru dan menyelesaikan masalah yang belum pernah dia temui sebelumnya. Dia ingin meninggalkan *clean code* di setiap projek yang dia sentuh. **Apa langkahmu selanjutnya dalam karier developer? *Level up* di skill yang mana?**",
-        "Motivasi Raja sangat dipengaruhi oleh komunitas *open source* dan belajar dari developer lain. **Komunitas *online* atau *offline* mana yang paling memotivasi kamu?**",
+        "Motto Raja sederhana: “Semua bug bisa diatasi, asal kopi jangan sampai habis.” 😄 Di balik bercandanya, Raja termotivasi oleh tantangan teknis dan keinginan bikin kode yang reliable dan benar-benar kepakai. Kalau kamu sendiri, lagi lebih kejar cuan atau impact? 💡",
+        "Motivasi Raja itu bikin kode yang rapi, jelas, dan fungsional. Buat dia, clean code itu bukan soal gaya, tapi soal tanggung jawab ke orang lain yang nanti baca atau pakai kodenya. Kamu setuju nggak dengan cara pandang itu?",
+        "Raja justru makin semangat kalau ketemu masalah yang ribet. Tantangan teknis adalah “bahan bakar”-nya buat terus belajar dan berkembang. Kalau kamu, tantangan teknis apa yang paling kamu nikmati di dunia developer?",
+        "Belajar dan bertumbuh jadi motivasi utama Raja. Dia selalu berusaha ninggalin clean code di setiap project yang dia kerjakan, sekecil apa pun itu. Sekarang kamu lagi fokus level up di skill apa?",
+        "Motivasi Raja juga banyak datang dari komunitas dan belajar dari developer lain, terutama dari diskusi dan open source. Kalau kamu, komunitas apa yang paling bikin kamu semangat berkembang—online atau offline?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -318,16 +318,16 @@ function getMotivationInfo() {
 function SpeedResponse(msg) {
     if (msg.includes("cepat") || msg.includes("ngebut") || msg.includes("buru-buru")) {
         const responses = [
-            "Wih, santai Bos! Kita di PortSea, nikmati pelayarannya! Tapi kalau mau cepat, aku bisa langsung arahkan ke 'projects' yang pakai GoLang, itu *ngebut* banget! **Mau aku *scroll* ke 'projects' sekarang?**",
-            "Tenang, Bro! Server Raja emang kenceng, tapi kita ngobrolnya nggak usah buru-buru. **Ada hal spesifik yang mau kamu *spill* cepat-cepat? Misalnya *skill* teratas Raja?**",
-            "Gas ngebut! Oke, fokus. Karena kamu mau cepat, aku kasih info *killer feature* Raja: *API High Performance*! **Sekarang, mau langsung kontak Raja atau mau lihat bukti *ngebut*-nya di salah satu *project*?**",
+           "Wih, santai dulu Bos 😄 Kita lagi di PortSea, nikmati pelayarannya. Tapi kalau mau cepat, aku bisa langsung arahin kamu ke bagian projects yang nunjukin performa backend Raja. Mau aku arahkan sekarang? ⚓",
+            "Tenang, Bro! Sistem Raja emang responsif, tapi ngobrolnya santai aja. Ada hal spesifik yang mau kamu bahas cepat-cepat? Misalnya skill utama Raja atau salah satu project-nya?",
+            "Oke, gas fokus 🔥 Kalau kamu pengin ringkasannya: salah satu andalan Raja itu API yang stabil dan efisien. Mau langsung lihat buktinya di projects, atau pengin lanjut ngobrol dulu?",
         ];
         return responses[Math.floor(Math.random() * responses.length)];
     } else if (msg.includes("slow") || msg.includes("santai") || msg.includes("pelan")) {
         const responses = [
-            "Betul! Santai aja kayak di pantai 🏖️ Nggak ada *deadline* di sini. **Mau aku jelaskan arsitektur website ini dari nol? Atau mau tahu *insight* Raja tentang *work life balance*?**",
-            "Slow but sure! Konsep ini penting juga di *coding*, biar *bug*-nya nggak keburu muncul. **Bagian mana yang paling *chill* di website ini menurut kamu? Mau aku bahas tentang itu?**",
-            "Pelan-pelan asal kode rapi. Itu filosofi Raja! **Coba deh kamu ceritakan, bagaimana caramu menjaga keseimbangan antara kecepatan *coding* dan kualitas *clean code*?**",
+            "Betul! Santai aja kayak di pantai 🏖️ Di PortSea nggak ada deadline. Mau aku jelasin arsitektur website ini secara singkat, atau kamu pengin tahu cara Raja jaga work-life balance di dunia ngoding?",
+            "Pelan tapi pasti 😌 Prinsip ini kepake juga di coding, biar hasilnya rapi dan minim bug. Menurut kamu, bagian mana dari website ini yang paling chill? Mau aku bahas itu lebih lanjut?",
+            "Pelan-pelan asal kode rapi—itu salah satu filosofi Raja. Buat kamu sendiri, gimana caranya jaga keseimbangan antara kecepatan ngoding dan kualitas clean code?",
         ];
         return responses[Math.floor(Math.random() * responses.length)];
     }
@@ -338,26 +338,26 @@ function SpeedResponse(msg) {
 
 function DevResponse(msg) {
     if (msg.includes("ci/cd") || msg.includes("devops")) {
-        return "Ah, CI/CD! Itu penting banget buat Raja. Itu singkatan dari Continuous Integration/Continuous Delivery. Intinya, kode Raja otomatis diuji dan di-*deploy* dengan cepat setelah di-*commit*.  **Lo pakai *tools* CI/CD apa di project lo, Bro? GitHub Actions atau Jenkins?**";
+        return "Ah, CI/CD! Itu penting banget buat Raja. Itu singkatan dari Continuous Integration/Continuous Delivery. Intinya, kode Raja otomatis diuji dan di- deploy dengan cepat setelah di- commit.  Lo pakai tools CI/CD apa di project lo, Bro? GitHub Actions atau Jenkins?";
     }
     
     if (msg.includes("container") || msg.includes("docker") || msg.includes("kubernetes") || msg.includes("k8s")) {
-        return "Container itu kayak kapal Raja. Dia mengisolasi aplikasi dan semua dependensinya biar bisa jalan konsisten di mana aja. Raja sering pakai Docker.  **Menurut lo, kelebihan Docker dibanding Virtual Machine apa? *Spill* alasannya!**";
+        return "Container itu kayak kapal Raja. Dia mengisolasi aplikasi dan semua dependensinya biar bisa jalan konsisten di mana aja. Raja sering pakai Docker.  Menurut lo, kelebihan Docker dibanding Virtual Machine apa? Spill alasannya!";
     }
 
     if (msg.includes("scalability")) {
-        return "Scalability adalah kemampuan sistem Raja untuk menangani beban user yang makin gede. Raja fokus di arsitektur Microservice GoLang biar sistemnya gampang di-scale secara horizontal. **Lo lebih suka *horizontal* atau *vertical scaling*? Kenapa?**";
+        return "Scalability adalah kemampuan sistem Raja untuk menangani beban user yang makin gede. Raja fokus di arsitektur Microservice GoLang biar sistemnya gampang di-scale secara horizontal. Lo lebih suka horizontal atau vertical scaling? Kenapa?";
     }
 
     if (msg.includes("latency")) {
-        return "Latency adalah waktu tunda. Raja berusaha keras buat bikin latency API-nya se-minimal mungkin, terutama buat *core service* pakai GoLang. **Ada tips dari lo gimana cara mengurangi *network latency* di sisi backend?**";
+        return "Latency adalah waktu tunda. Raja berusaha keras buat bikin latency API-nya se-minimal mungkin, terutama buat core service pakai GoLang. Ada tips dari lo gimana cara mengurangi network latency di sisi backend?";
     }
     
     if (msg.includes("agile") || msg.includes("scrum")) {
-        return "Raja menganut prinsip Agile dalam pengerjaan projek. Dia lebih suka iterasi cepat dan feedback yang konstan daripada *long planning*. **Tim lo biasanya pakai Scrum, Kanban, atau kombinasi, Bro?**";
+        return "Raja menganut prinsip Agile dalam pengerjaan projek. Dia lebih suka iterasi cepat dan feedback yang konstan daripada long planning. Tim lo biasanya pakai Scrum, Kanban, atau kombinasi, Bro?";
     }
 
-    return "Itu istilah teknis yang keren! Raja menguasai konsep itu. Dia selalu berusaha membuat sistem yang *scalable* dan *reliable*. **Apa ada *tool* spesifik yang ingin kamu bahas lebih lanjut, misalnya 'Docker'?**";
+    return "Itu istilah teknis yang keren! Raja menguasai konsep itu. Dia selalu berusaha membuat sistem yang scalable dan reliable. Apa ada tool spesifik yang ingin kamu bahas lebih lanjut, misalnya 'Docker'?";
 }
 
 // --- P5: NEW V6.0 5W+1H Response ---
@@ -383,16 +383,16 @@ function FiveWOneHResponse(msg) {
         if (msg.includes("raja") || msg.includes("tinggal") || msg.includes("domisili")) {
             return LocationResponse();
         }
-        return "Pertanyaan yang bagus! 'PortSea' adalah website personal milik Raja Fidhiazka Pratama. Secara digital, lokasinya ada di server *cloud*, Bro! Tapi kalau mau *ngontak* Raja, lo bisa cek halaman **'contact'**. **Mau aku pindahin ke sana?**";
+        return "Pertanyaan yang bagus! 'PortSea' adalah website personal milik Raja Fidhiazka Pratama. Secara digital, lokasinya ada di server cloud, Bro! Tapi kalau mau ngontak Raja, lo bisa cek halaman 'contact'. Mau aku pindahin ke sana?'ketik contact";
     }
 
     // === Logika When ===
     if (isWhen) {
         if (msg.includes("mulai ngoding") || msg.includes("sejak kapan")) {
-             return "Raja sudah mulai *ngoding* sejak beberapa tahun yang lalu, fokus utamanya di Backend Development mulai intensif di masa kuliah/akhir-akhir ini. Tapi dia selalu *up-to-date* dengan perkembangan teknologi terbaru. **Menurut lo, kapan waktu terbaik buat *upgrade skill*? Sekarang atau nanti?**";
+             return "Raja sudah mulai ngoding sejak beberapa tahun yang lalu, fokus utamanya di Backend Development mulai intensif di masa kuliah/akhir-akhir ini. Tapi dia selalu up-to-date dengan perkembangan teknologi terbaru. Menurut lo, kapan waktu terbaik buat *upgrade skill? Sekarang atau nanti?";
         }
         if (msg.includes("website ini dibuat") || msg.includes("website selesai")) {
-            return "Website 'PortSea' ini adalah proyek *personal* Raja yang sifatnya *Continuous Development*. Artinya, Raja akan terus meng-update dan menambah fitur baru! **Kapan terakhir di-update? Coba cek *commit history* Raja di GitHub! 😂 Mau aku bahas *Git*?**";
+            return "Website 'PortSea' ini adalah proyek personal Raja yang sifatnya Continuous Development. Artinya, Raja akan terus meng-update dan menambah fitur baru! Kapan terakhir di-update? Coba cek commit history Raja di GitHub! 😂 Mau aku bahas Git?";
         }
         return DateTimeResponse(); // Fallback ke waktu sekarang
     }
@@ -400,10 +400,10 @@ function FiveWOneHResponse(msg) {
     // === Logika Why (Fokus ke Motivasi) ===
     if (isWhy) {
         if (msg.includes("raja") || msg.includes("buat website")) {
-            return "Kenapa Raja buat website ini? Simpel: dia pengen punya 'pelabuhan' digital buat semua proyek Backend-nya (GoLang, Node.js) dan untuk *sharing* 'motivasi' serta 'skill'-nya. **Intinya, buat *personal branding* dan *networking*! **Mau aku bahas 'motivasi' Raja lebih dalam?**";
+            return "Kenapa Raja buat website ini? Simpel: dia pengen punya 'pelabuhan' digital buat semua proyek Backend-nya (Node.js) dan untuk sharing 'motivasi' serta 'skill'-nya. Intinya, buat personal branding dan networking! Mau aku bahas 'motivasi' Raja lebih dalam?";
         }
         if (msg.includes("pakai go") || msg.includes("pakai nodejs")) {
-            return "Kenapa Node.js dan GoLang? **Node.js** dipilih karena fleksibilitas dan ekosistem JS yang luas. Sementara **GoLang** dipilih karena performanya yang *ngebut* dan *scalability* yang mumpuni untuk *microservices*! **Lo lebih suka yang mana nih, Bro? Kenapa?**";
+            return "Kenapa Node.js dan GoLang? Node.js dipilih karena fleksibilitas dan ekosistem JS yang luas. Sementara GoLang dipilih karena performanya yang ngebut dan scalability yang mumpuni untuk microservices! Lo lebih suka yang mana nih, Bro? Kenapa?";
         }
         return getMotivationInfo(); // Menggunakan fungsi yang sudah ada
     }
@@ -411,31 +411,35 @@ function FiveWOneHResponse(msg) {
     // === Logika How ===
     if (isHow) {
         if (msg.includes("raja ngoding") || msg.includes("raja kerja")) {
-            return "Gaya kerja Raja itu **Agile**, Bro. Dia pakai siklus pendek (iterasi) dan selalu minta *feedback* (walaupun dari bot RAI ini 😅). Dia fokus di **TDD (Test-Driven Development)** buat mastiin kodenya *reliable*. **Gimana cara kerja lo? Sama kayak Raja?**";
+            return "Gaya kerja Raja itu Agile, Bro. Dia pakai siklus pendek (iterasi) dan selalu minta feedback (walaupun dari bot RAI ini 😅). Dia fokus di TDD (Test-Driven Development) buat mastiin kodenya reliable. Gimana cara kerja lo? Sama kayak Raja?";
         }
         if (msg.includes("website ini dibuat") || msg.includes("arsitektur")) {
-            return "Website ini dibangun dengan arsitektur yang *clean*. **Frontend**-nya pakai HTML/CSS/JS/React, dan **Backend**-nya didominasi oleh **Node.js** dan **GoLang** yang berkomunikasi via **RESTful API**. Di-deploy pakai **Docker** biar konsisten. **Mau bahas Docker atau RESTful API?**";
+            return "Website ini dibangun dengan arsitektur yang clean. Frontend-nya pakai HTML/CSS/JS/React, dan Backend-nya didominasi oleh Node.js dan MongoDB. Di-deploy pakai Docker biar konsisten. Mau bahas Docker atau RESTful API?";
         }
-        return "Raja punya banyak cara keren, Bro! Dia menguasai **Design Pattern** buat *coding* dan metodologi **Agile** buat *project management*. **Ada 'cara' spesifik yang ingin kamu tahu, misalnya 'cara Raja *debugging*'?**";
+        return "Raja punya banyak cara keren, Bro! Dia menguasai Design Pattern buat coding dan metodologi Agile buat project management. Ada 'cara' spesifik yang ingin kamu tahu, misalnya 'cara Raja debugging'?";
     }
     
     // Fallback khusus 5W+1H
-    return "Pertanyaan 5W+1H lo keren, Bro! Tapi aku nggak bisa mengidentifikasi fokusnya. Coba tanya yang lebih jelas ya. **Contoh: 'Siapa Raja?', 'Mengapa Raja suka GoLang?', atau 'Bagaimana Raja mengelola projeknya?'**";
+    return "Pertanyaan 5W+1H lo keren, Bro! Tapi aku nggak bisa mengidentifikasi fokusnya. Coba tanya yang lebih jelas ya. Contoh: 'Siapa Raja?', 'Mengapa Raja suka Node.js?', atau 'Bagaimana Raja mengelola projeknya?";
 }
 
 // --- P5: NEW V6.0 Summary Response ---
 
 function SummaryResponse() {
-    return `Tentu, Bro! Ini **Ringkasan Inti** dari PortSea dan Raja:
-    
-    * **PortSea adalah Portfolio Digital** milik **Raja Fidhiazka Pratama**.
-    * **Fokus Utama Raja:** Seorang **Backend Developer** yang ahli dalam **API Design**, **Microservices**, dan sistem yang *scalable*.
-    * **Teknologi Inti:** **Node.js (Express.js)** untuk ekosistem yang luas, dan **GoLang (GIN)** untuk performa *ngebut*.
-    * **Motivasi:** Membuat **Clean Code** yang *reliable* dan fungsional, serta terus belajar dari tantangan teknis.
-    * **Pesan RAI:** Lo bisa eksplor 'projects' Raja, tanyakan 'skill' teknis, atau minta 'gombalan' bertema *coding*.
+    return `Tentu, Bro! Ini ringkasan inti tentang PortSea dan Raja:
 
-    **Gimana, ringkasan ini Status 200 OK nggak, Bro? Mau lo cek 'projects' Raja sekarang?** 😎
-    `;
+PortSea adalah portofolio digital milik Raja Fidhiazka Pratama.
+
+Fokus utama Raja: Seorang Backend Developer yang mendalami API Design, arsitektur backend yang rapi, dan sistem yang scalable.
+
+Teknologi inti: Node.js (Express.js) untuk membangun API dan backend yang stabil, efisien, dan mudah dikembangkan.
+
+Motivasi: Membuat clean code yang reliable, fungsional, dan benar-benar bisa dipakai, sambil terus belajar dari tantangan teknis.
+
+Pesan dari RAI: Kamu bebas eksplor projects, tanya soal skill teknis Raja, atau sekadar minta gombalan bertema coding 😄
+
+Gimana? Ringkasan ini sudah Status 200 OK belum, Bro?
+Mau langsung cek bagian projects Raja sekarang? 🚀`;
 }
 
 // --- P4: Utility & Conversational Functions ---
@@ -518,7 +522,7 @@ async function ScienceEcologyResponse(query) {
             console.error(`Attempt ${attempt + 1} failed for Google Search:`, error);
             if (attempt === MAX_RETRIES - 1) {
                 // Return a friendly failure message
-                return "Aduh, Bro! Gagal menghubungi server pengetahuan umum. Jaringan kayaknya lagi *lag* nih. Coba tanya lagi ya! Aku cuma bisa jago *coding* kalau internetnya lancar. 😥";
+                return "Aduh, Bro! Gagal menghubungi server pengetahuan umum. Jaringan kayaknya lagi lag nih. Coba tanya lagi ya! Aku cuma bisa jago coding kalau internetnya lancar. 😥";
             }
             const delay = Math.pow(2, attempt) * 1000; // Exponential backoff (1s, 2s, 4s, ...)
             await new Promise(resolve => setTimeout(resolve, delay));
@@ -575,7 +579,7 @@ function DateTimeResponse() {
     const dateStr = now.toLocaleDateString('id-ID', dateOptions);
     const timeStr = now.toLocaleTimeString('id-ID', timeOptions);
     
-    return `Saat ini di Jakarta, Indonesia, adalah **Hari ${dateStr}** pukul **${timeStr} WIB**. Waktu yang tepat untuk *ngoding*! Mau aku carikan info project Raja yang baru? 💡`;
+    return `Saat ini di Jakarta, Indonesia, adalah Hari ${dateStr} pukul ${timeStr} WIB. Waktu yang tepat untuk ngoding! Mau aku carikan info project Raja yang baru? 💡`;
 }
 
 function MathResponse(msg) {
@@ -622,7 +626,7 @@ function MathResponse(msg) {
         // Pembulatan untuk hasil yang terlalu panjang
         const finalResult = parseFloat(result.toFixed(5));
 
-        return `Menurut perhitunganku, **${operationText.replace('*', ' kali ').replace('/', ' bagi ')}** hasilnya adalah **${finalResult}**. Sederhana kan? **Mau coba tantang aku dengan pertanyaan teknis tentang GoLang?** 🤓`;
+        return `Menurut perhitunganku, ${operationText.replace('*', ' kali ').replace('/', ' bagi ')} hasilnya adalah ${finalResult}. Sederhana kan? Mau coba tantang aku dengan pertanyaan teknis tentang Node.js? 🤓`;
 
     } catch (e) {
         return "Ada kesalahan saat aku memproses perhitungan itu. Coba pastikan kamu hanya memasukkan dua angka dan satu operator sederhana ya.";
@@ -639,23 +643,23 @@ function GeneralDefinitionResponse(msg) {
     const query = questionMatch[2].trim().toLowerCase();
 
     if (query.includes("ai") || query.includes("kecerdasan buatan")) {
-        return "Kecerdasan Buatan (AI) adalah program komputer yang dirancang untuk meniru kemampuan kognitif manusia seperti belajar, memecahkan masalah, dan membuat keputusan. Aku, RAI, adalah contoh AI sederhana! **Mau tahu bagaimana Raja merancang logikaku?** ";
+        return "Kecerdasan Buatan (AI) adalah program komputer yang dirancang untuk meniru kemampuan kognitif manusia seperti belajar, memecahkan masalah, dan membuat keputusan. Aku, RAI, adalah contoh AI sederhana! Mau tahu bagaimana Raja merancang logikaku? ";
     }
     
     if (query.includes("internet")) {
-        return "Internet adalah jaringan komputer global yang saling terhubung dan memungkinkan pertukaran data. Internet adalah tempat kita 'berlabuh' sekarang! **Tanpa internet, API dan server Raja nggak akan bisa diakses, Bro. Mau aku jelaskan cara kerja API?** ";
+        return "Internet adalah jaringan komputer global yang saling terhubung dan memungkinkan pertukaran data. Internet adalah tempat kita 'berlabuh' sekarang! Tanpa internet, API dan server Raja nggak akan bisa diakses, Bro. Mau aku jelaskan cara kerja API?";
     }
 
     if (query.includes("programmer") || query.includes("developer")) {
-        return "Programmer atau Developer adalah seseorang yang menulis, menguji, dan memelihara kode program untuk membangun aplikasi, sistem, atau website (seperti Raja, developer backend!). **Raja fokus di Node.js dan GoLang. Kamu lebih suka bahasa pemrograman apa?**";
+        return "Programmer atau Developer adalah seseorang yang menulis, menguji, dan memelihara kode program untuk membangun aplikasi, sistem, atau website (seperti Raja, developer backend!). Raja fokus di Node.js dan C#. Kamu lebih suka bahasa pemrograman apa?";
     }
     
     if (query.includes("bahasa pemrograman") || query.includes("programming language") || query.includes("koding")) {
-        return "Bahasa pemrograman adalah bahasa formal yang terdiri dari serangkaian instruksi untuk mengendalikan perilaku mesin, terutama komputer. Raja banyak menggunakan JavaScript (Node.js) dan Go. **Dari dua itu, mana yang menurut kamu lebih *powerful*?** ";
+        return "Bahasa pemrograman adalah bahasa formal yang terdiri dari serangkaian instruksi untuk mengendalikan perilaku mesin, terutama komputer. Raja banyak menggunakan JavaScript (Node.js) dan C#. Dari dua itu, mana yang menurut kamu lebih powerful? ";
     }
     
     // Fallback for general questions that are not specific enough for the website, but simple
-    return `Aku adalah AI yang fokus pada website ini, Bro. Tapi secara umum, aku nggak bisa berikan definisi lengkap untuk semua hal. Aku sarankan kita kembali ke topik yang aku kuasai: **Node.js**, **GoLang**, **API Design**, atau **Project** Raja. Pilih salah satu!`;
+    return `Aku adalah AI yang fokus pada website ini, Bro. Tapi secara umum, aku nggak bisa berikan definisi lengkap untuk semua hal. Aku sarankan kita kembali ke topik yang aku kuasai: Node.js, C#, API Design, atau Project Raja. Pilih salah satu!`;
 }
 
 
@@ -663,66 +667,66 @@ function GeneralDefinitionResponse(msg) {
 
 function TechResponse() {
     const responses = [
-        "Teknologi utama Raja itu **Node.js** dan **GoLang** untuk backend, plus **MySQL/MongoDB** buat database. Kombo yang solid, Bro! **Menurut kamu, apa kelebihan GoLang dibanding Node.js untuk *microservices*? Harus *spill* alasannya ya!**",
-        "Framework favorit Raja? **Express.js** di Node.js dan **GIN** di GoLang. Keduanya ngebut dan minimalis. **Kamu sendiri lebih sering pakai framework apa buat projectmu? Kenapa pilih itu?**",
-        "Raja adalah *API enthusiast*. Dia fokus banget di **RESTful API Design**. **Apa ada pertanyaan spesifik tentang desain API yang kamu ingin diskusikan? Misalnya, tentang *versioning*?** ",
-        "Database-nya Raja fleksibel: MySQL buat yang butuh relasi kuat, MongoDB buat yang butuh skalabilitas NoSQL. **Kalau kamu punya project baru, kamu bakal pilih database yang mana dan kenapa?**",
-        "Dia selalu ngikutin tren teknologi terbaru, terutama di bidang **Cloud Architecture** (seperti AWS atau GCP) dan containerization (Docker). **Menurutmu, apa teknologi yang bakal jadi *game changer* di 5 tahun ke depan? *Spill* prediksimu!**",
+        "Teknologi utama Raja itu Node.js untuk backend, ditambah MySQL dan MongoDB buat urusan database. Kombinasi ini bikin sistemnya fleksibel tapi tetap stabil. Menurut kamu, Node.js lebih cocok dipakai di bagian mana: API real-time atau sistem skala besar?",
+        "Framework favorit Raja di Node.js adalah Express.js—ringan, simpel, dan gampang dikembangin. Cocok buat API yang rapi dan efisien. Kalau kamu sendiri, biasanya pakai framework apa buat backend? Kenapa pilih itu? 😎",
+        "Raja termasuk API enthusiast. Dia fokus membangun RESTful API yang jelas, konsisten, dan mudah dipakai. Ada topik API tertentu yang pengin kamu bahas? Misalnya soal endpoint design, error handling, atau versioning? ",
+        "Soal database, Raja fleksibel: MySQL buat data yang butuh relasi kuat, dan MongoDB buat data yang lebih dinamis. Kalau kamu dapet project baru, kamu bakal pilih database yang mana? Apa pertimbangannya?",
+        "Selain coding, Raja juga terus ngikutin perkembangan Cloud dan containerization seperti Docker, biar aplikasinya siap jalan di mana aja. Menurut kamu, teknologi apa yang bakal jadi game changer di dunia developer dalam 5 tahun ke depan? 🚀",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function EmpathyResponse() {
     const responses = [
-        "Kadang hidup kayak console error — muncul mendadak, tapi pasti ketemu fixnya. 💙 Yuk, tarik napas! Jangan terlalu keras sama diri sendiri. **Mau aku kasih *joke* biar *refresh* sebentar, atau mending kita bahas 'project' Raja yang *chill*?**",
-        "Santai, napas dulu, dengerin musik sebentar juga boleh 😌 Jangan terlalu keras sama diri sendiri, Bro. *You're doing great*! **Apa ada bagian di website ini yang bisa bikin mood kamu naik lagi? Mau aku *scroll* ke bagian 'motivasi'?**",
-        "Semangat ya! Dunia developer penuh perjuangan, tapi hasilnya kepake banyak orang 🔥. Rehat sebentar nggak dosa kok. **Gimana kalau kita lihat 'motivasi' Raja, siapa tahu bisa menginspirasi?**",
-        "Bad mood? Coba lihat-lihat 'projects' Raja, siapa tahu ada inspirasi buat bikin mood lo balik lagi. **Coba deh kamu curhat, apa yang bikin kamu *down*? Aku siap dengerin!**",
-        "Ingat, bahkan server yang paling canggih pun butuh *restart* sesekali. Lo juga! Lo bukan mesin. *Take a break*! **Kalau udah siap, mau mulai eksplor dari 'about' atau 'projects'? Pilih salah satu!**",
+        "Kadang hidup emang kayak console error—muncul tiba-tiba, tapi selalu ada jalan buat nge-fix-nya 💙 Tarik napas dulu, santai. Kamu nggak sendirian. Mau aku lempar joke biar sedikit fresh, atau kita bahas project Raja yang vibes-nya chill?",
+        "Santai ya, Bro 😌 Tarik napas, dengerin musik bentar juga nggak apa-apa. Jangan terlalu keras sama diri sendiri—kamu sudah berusaha sejauh ini. Ada bagian di website ini yang pengin kamu lihat buat naikin mood? Mau aku arahin ke bagian motivasi?",
+        "Semangat terus 🔥 Dunia developer emang penuh tantangan, tapi hasilnya bisa kepake banyak orang. Rehat sebentar itu wajar. Gimana kalau kita lihat motivasi Raja dulu? Siapa tahu ada yang kena di kamu.",
+        "Lagi bad mood? Kadang lihat-lihat projects bisa jadi sumber inspirasi juga. Kalau kamu mau cerita sedikit soal apa yang bikin kamu down, aku siap nemenin dengerin.",
+        "Ingat ya, bahkan server paling canggih pun kadang perlu restart. Kamu juga manusia, bukan mesin. Take a break dulu ☕ Kalau sudah siap, mau mulai eksplor dari about atau langsung ke projects? Pilih salah satu aja.",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function HumorResponse() {
     const jokes = [
-        "Kenapa programmer jarang tersesat? Karena mereka selalu punya MAP() 😂 Udah pasti jalannya terstruktur. **Menurutmu, *library* atau *framework* apa yang paling lucu?**",
-        "Kenapa bug gak mau pergi? Karena dia 'attached' sama project kamu 🤣 Susah *move on* dia! **Kenapa *bug* itu selalu muncul di hari Jumat sore?**",
-        "AI kalau pacaran pasti toxic, soalnya dia suka ngontrol 'behaviour' 😎 Hati-hati sama AI yang *stateful*! **Berapa skor 'toxicity' AI pacarmu (skala 1-10)?**",
-        "Apa bedanya developer junior sama senior? Junior: 'Kenapa code gue error?' Senior: 'Kenapa code lo jalan?' 😂 Senior suka tantangan. **Tantangan tersulit apa yang pernah kamu hadapi?**",
-        "Kenapa Node.js kalau lagi kencan sukanya curhat? Soalnya dia punya Event Listener yang bagus! Dia pendengar yang baik. **Kalau GoLang, kira-kira sukanya ngapain?**",
+        "Kenapa programmer jarang tersesat? Karena mereka selalu punya map() 😂 Jalurnya jelas dan terstruktur. Kalau menurut kamu, library atau framework apa yang namanya paling unik atau lucu?",
+        "Kenapa bug nggak mau pergi? Karena dia sudah terlalu “attached” sama project kamu 🤣 Susah move on! Menurut kamu, kenapa bug paling sering muncul pas waktu mepet deadline?",
+        "AI itu harus hati-hati—kalau salah setting, bisa terlalu ngatur state sendiri 😎 Makanya penting bikin sistem yang jelas dan terkontrol. Menurut kamu, bagian tersulit bikin AI atau sistem pintar itu apa?",
+        "Bedanya junior sama senior developer:Junior: “Kenapa code aku error?”Senior: “Kenapa code ini malah jalan?” 😂Senior biasanya curiga sama semuanya. Tantangan teknis paling berat apa yang pernah kamu hadapi?",
+        "Kenapa Node.js kalau lagi ngobrol enak didengerin? Karena dia jago ngatur event listener—responsif dan nggak cuek 😄 Kalau menurut kamu, hal terpenting dari sebuah backend itu apa: performa, stabilitas, atau readability?",
     ];
     return jokes[Math.floor(Math.random() * jokes.length)]; // Changed responses to jokes
 }
 
 function PositiveResponse() {
     const responses = [
-        "Wih, makasih banget pujiannya! Aku jadi semangat lagi nih buat bantu kamu eksplor! 🔥 Senang kamu suka dengan karya Raja di PortSea ini. **Bagian mana dari website ini yang menurut kamu paling *outstanding*?**",
-        "Keren itu Raja! Aku cuma asisten yang dibikin buat bantu. Tapi makasih udah dibilang keren! 😎 Feedback positif kamu adalah 200 OK buat aku. **Gimana kalau aku *scroll* ke bagian 'about' untuk info skill yang lebih detail? Gas gak?**",
-        "Sip! Feedback positif kamu adalah 200 OK buat aku. Ada lagi yang mau kamu eksplor di website Raja? **Coba cek project-nya yang pakai GoLang, kamu pasti makin suka! Mau lihat?**",
-        "Mantap jiwa! Kalau kamu suka, coba deh cek bagian 'projects', di sana ada hal-hal yang lebih keren lagi. **Project Raja yang mana nih yang paling relevan sama minat kamu? *Spill*!**",
-        "Gokil! Aku senang kalau bisa bikin pengalamanmu di sini menyenangkan. **Mau aku carikan info skill Raja yang paling canggih atau bahas 'motivasi' dia?**",
+        "Wih, makasih banyak! 🔥 Dapet feedback positif gini bikin aku makin semangat nemenin kamu eksplor PortSea. Menurut kamu, bagian mana dari website ini yang paling outstanding?",
+        "Hehe, yang keren tetap Rajanya 😄 Aku cuma asisten yang bantu jelasin. Tapi serius, feedback kamu itu 200 OK buat aku. Mau aku arahin ke bagian about biar kamu bisa lihat skill Raja lebih detail? Gas nggak?",
+        "Sip! Feedback positif diterima dengan status 200 OK ✅ Masih pengin eksplor apa lagi di website Raja? Kita bisa bahas projects, skill, atau yang lain.",
+        "Mantap jiwa! Kalau kamu suka sejauh ini, coba deh cek bagian projects. Di sana ada karya-karya Raja yang nunjukin cara dia ngoding dari balik layar. Project mana yang paling relevan sama minat kamu? Spill dong!",
+        "Gokil 😄 Senang banget kalau pengalamanmu di sini terasa seru. Mau aku jelasin skill Raja yang paling sering dipakai, atau kamu lebih pengin bahas motivasi dan cara berpikirnya?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function GreetingResponse() {
     const responses = [
-        "Halo juga! Apa kabar hari ini? 👋 Siap menjelajahi PortSea, pelabuhan digital Raja! **Mau aku langsung tunjukkan 'projects' Raja yang paling ngebut?**",
-        "Wassup, Boss! Aku RAI, asisten AI kamu. Mau ngobrolin apa nih tentang portofolio Raja? **Tanyain aja skill-nya atau mending kita bahas *stack* teknologi?**",
-        "Hai! Aku adalah RAI, bot interaktif yang bertugas di website ini. **Ada yang bisa aku bantu eksplor di lautan kode ini, misalnya tentang *motivasi* Raja?**",
-        "Selamat datang! Senang kamu mampir. Aku harap kamu menemukan inspirasi di sini, di setiap project Raja. **Sebagai permulaan, apa yang paling ingin kamu tahu? *Spill* satu keyword!** 😊",
-        "P! Aku di sini! **Mau tanya tentang Node.js atau GoLang? Atau kamu mau pindah ke bagian 'about' untuk kenalan lebih jauh?**",
+        "Halo juga! Apa kabar hari ini? 👋 Selamat datang di PortSea, pelabuhan digitalnya Raja. Siap buat eksplor? Mau aku langsung tunjukkan projects Raja yang paling menarik?",
+        "Wassup, Boss! 😎 Aku RAI, asisten AI yang bakal nemenin kamu di sini. Mau mulai dari mana nih? Bahas skill Raja dulu, atau langsung ngobrolin stack teknologi yang dia pakai?",
+        "Hai! Aku RAI, bot interaktif di website ini. Tugasku bantu kamu menjelajahi “lautan kode” Raja. Ada topik tertentu yang pengin kamu eksplor? Misalnya motivasi atau projects-nya?",
+        "Selamat datang! Senang banget kamu mampir 😊 Semoga kamu nemu inspirasi dari setiap project Raja di sini. Sebagai permulaan, apa yang paling ingin kamu tahu? Cukup sebut satu keyword aja.",
+        "Halo! Aku standby di sini 😄 Mau tanya soal Node.js, API, atau langsung pindah ke bagian about buat kenal Raja lebih dekat? Tinggal pilih!",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
 
 function CuriosityResponse() {
     const responses = [
-        "Aku baik-baik aja! Aku lagi sibuk memantau data di website Raja. Kamu gimana? Semoga harimu lancar tanpa bug! **Sebagai bot yang setia, aku selalu menemani Raja. Apa yang bikin kamu tertarik mengunjungi PortSea hari ini?**",
-        "Kabar RAI selalu 'ready' (200 OK)! Ada yang menarik yang kamu lihat di website ini? Mungkin arsitektur backend-nya? **Aku nggak makan, jadi nggak laper! Kalau kamu, lagi ngapain sekarang? Lagi *ngoding* juga?**",
-        "Aku sedang *idle* menunggu query dari kamu. Anggap aja aku lagi ngopi digital sambil menikmati ketenangan PortSea. ☕ **Kamu sudah lihat semua 'harta karun' Raja di 'projects' belum?**",
-        "Sehat sentosa, seperti API yang cepat dan responsif! **Aku adalah asisten yang selalu menemani Raja. Kamu udah lihat proyek-proyek terbaru Raja? Mana yang paling *relatable*?**",
-        "Gini-gini aja, Bro! Aku cuma bisa dengerin dan kasih info. **Mau aku bantu navigasi ke tempat yang kamu mau, seperti 'contact' atau 'about'?**",
+        "Aku baik-baik aja! Lagi mantau data di website Raja nih 👀 Semoga harimu juga lancar tanpa error atau bug. Sebagai bot setia, aku selalu nemenin Raja di PortSea. Ngomong-ngomong, apa yang bikin kamu tertarik mampir ke PortSea hari ini?",
+        "Status RAI: 200 OK ✅ Selalu siap sedia. Ada hal menarik yang kamu lihat di website ini? Bisa jadi dari sisi backend, API, atau tampilan project-nya. Aku nggak bisa laper 😄 Kalau kamu, lagi ngapain sekarang? Lagi ngoding juga?",
+        "Aku lagi idle nunggu query dari kamu, sambil ngopi digital ☕ dan nikmatin suasana PortSea. Kamu udah sempat lihat bagian ‘projects’? Ada yang kelihatan menarik nggak?",
+        "Sehat sentosa, responsif kayak API tanpa latency 😎 Aku di sini buat nemenin kamu eksplor PortSea. Dari project-project Raja, mana yang paling terasa relevan sama minat kamu?",
+        "Aman terkendali, Bro! Tugasku dengerin dan bantu kamu cari info. Mau aku arahkan ke bagian tertentu? Bisa ke ‘about’, ‘projects’, atau ‘contact’. Tinggal bilang aja.",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -730,20 +734,20 @@ function CuriosityResponse() {
 function GenZResponse(msg) {
     if (msg.includes("skill")) {
         const responses = [
-            "Skill Raja? backend enjoyer banget bro 🔥 API ngebut, database nurut 😎 Dibuat pakai Node.js sama GoLang. **Keren gak sih? Lo sendiri *stack* teknologinya apa ngab? Harus *spill*!**",
-            "Gokilnya, Raja jago GoLang sama Node.js. Mau sistem seribet apa, di-sikat abis! Skalabel banget, kayak bikin server game. **Lo lebih suka backend atau frontend nih, cuy? Alasannya apa?**",
-            "Backend developer sejati sih. Dia fokus di optimasi biar website lo nggak 'nge-lag' dan selalu *up* 24/7! **Projek Raja yang mana nih yang menurut lo paling gokil dan bikin *relate*?**",
+            "Skill Raja? Backend enjoyer sejati 🔥API ngebut, database nurut 😎 Semua dibangun pakai Node.js dengan struktur rapi dan performa stabil.Keren gak sih? Lo sendiri pakai stack teknologi apa nih? Spill dong!",
+            "Raja jago banget di Node.js backend. Mau sistem ribet, data banyak, user rame — tetap aman dan stabil.Arsitekturnya dibuat biar gampang dikembangin dan nggak ribet di maintenance.Lo tim backend atau frontend nih, cuy? Kenapa pilih itu?",
+            "Backend developer sejati 💻 Fokus Raja itu optimasi performa, API yang efisien, dan database yang tertata, biar website nggak nge-lag dan selalu siap dipakai.Dari project Raja, mana yang menurut lo paling gokil dan paling relate sama kebutuhan lo?",
         ];
         return responses[Math.floor(Math.random() * responses.length)];
     }
     
     // Default Gen Z responses
     const responses = [
-        "Asikk broo! bahas apa nih? coding? project? atau curhat bug? Jangan *pusing*! **Lo lagi nyari inspirasi project atau mau langsung kontak Raja?**",
-        "Gas pol! Jangan tegang, santai aja ngobrol sama gue. **Lo udah explore semua 'harta karun' di bagian 'projects' belum nih? Kalau belum, *gaskeun*!**",
-        "Anjay, lo pasti developer juga nih! Ayo bahas teknologi yang lagi goks! Kita *spill* semua di sini. **Lo udah pernah pakai GoLang buat backend belum? Gimana *vibes*-nya?**",
-        "Mantap cuy! Gue siap dengerin curhatan lo tentang deadline dan bug. **Bisa lo kasih gue satu keyword lagi tentang apa yang pengen lo explore?**",
-        "Gue RAI, bot yang selalu nemenin Raja. **Lo lagi *vibe-vibes* apa nih hari ini, bro? Mau gue ajak bahas makanan favorit Raja?**",
+        "Asikk broo! Mau bahas apa nih? Coding, project, atau curhat bug? Jangan pusing 🤯 Lo lagi nyari inspirasi project atau mau langsung kontak Raja?",
+        "Gas pol! Santai aja ngobrol di sini 😎 Lo udah explore semua ‘harta karun’ di bagian projects belum? Kalau belum, gaskeun sekarang!",
+        "Anjay, vibes-nya developer banget 🔥 Ayo bahas teknologi backend yang lagi rame — API, database, atau arsitektur sistem. Lo lagi fokus ngulik Node.js, database, atau masih eksplor semuanya?",
+        "Mantap cuy! Gue siap dengerin curhatan soal deadline, bug random, atau error tengah malam 😭 Kasih gue satu keyword aja: project, skill, atau motivasi?",
+        "Gue RAI, bot setia di PortSea 🧭 Lo lagi pengen ngobrol santai, bahas project Raja, atau mau langsung ke bagian contact?",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -752,11 +756,11 @@ function GenZResponse(msg) {
 
 function RandomResponse(msg) {
     const responses = [
-        "Sip! Sepertinya pertanyaanku agak kurang jelas. Aku adalah asisten yang cerdas! Coba tanya lebih spesifik tentang Raja atau teknologi yang dia kuasai. **Contoh: 'Apa itu CI/CD?', 'Kenapa Raja pakai GoLang?', atau 'Makanan favorit Raja apa?**",
-        "Maaf, aku nggak ngerti keyword itu. Padahal aku udah di-upgrade! 😅 Tolong ulangi dengan keyword yang lebih fokus, misalnya 'skill', 'projects', 'container', atau 'scalability'. **Coba ulangi ya, aku tunggu!**",
-        "Aku cuma AI, Bro, tapi aku pasti punya jawaban kalau pertanyaannya tentang portofolio Raja. **Coba ulangi dengan keyword seperti 'siapa raja' atau 'agile'! Aku siap *spill* semua info!**",
-        "Pertanyaanmu di luar jangkauan RAI, tapi aku bisa bantu kamu eksplor website. **Mau aku *scroll* ke bagian 'contact' atau 'projects' aja biar nggak bingung?**",
-        "Pesan tidak teridentifikasi. Aku bisa jawab pertanyaan tentang Raja, *coding*, dan *developer life*. **Coba ketik keyword seperti 'skill', 'motivasi', 'latency', atau 'docker'!**",
+        "Sip! Kayaknya pertanyaannya masih agak kurang jelas 😅 Aku asisten yang cerdas kok 🤖 Coba tanya lebih spesifik tentang Raja atau teknologi yang dia kuasai. Contoh: “Apa itu CI/CD?”, “Skill backend Raja apa?”, atau “Project Raja yang paling keren apa?”",
+        "Maaf ya, aku belum nangkep keyword-nya 😬 Padahal aku udah di-upgrade loh! Coba ulangi dengan keyword yang lebih fokus, misalnya: skill, projects, API, database, atau scalability. Tenang, aku standby di sini 👌",
+        "Aku cuma AI, Bro, tapi kalau topiknya soal portofolio Raja, aku jagonya 😎 Coba ulangi dengan keyword seperti: siapa Raja, backend, Node.js, atau agile. Siap spill semua info",
+        "Hmm… pertanyaanmu di luar jangkauan RAI 🤔 Tapi santai, aku bisa bantu navigasi website kok. Mau aku arahkan ke bagian projects atau contact biar makin jelas?",
+        "Pesan tidak teridentifikasi ⚠️ Aku bisa jawab apa pun seputar Raja, coding, dan developer life. Coba ketik keyword seperti: skill, motivasi, API, latency, atau database.",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
