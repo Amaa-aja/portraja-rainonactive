@@ -41,6 +41,17 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="logo">MyPort<span class="accent">Raja</span></div>
 
+      <button id="weatherToggle" class="weather-toggle">
+        🌤️ <span id="tempMini">--°C</span>
+      </button>
+
+      <div id="weatherDropdown" class="weather-dropdown hidden">
+        <p id="weatherLocation">Memuat...</p>
+        <p id="weatherCondition"></p>
+        <p id="weatherTemp"></p>
+        <p id="weatherAlert"></p>
+      </div>
+
       <button id="hamburger" class="hamburger" aria-controls="nav-links" aria-expanded="false" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>

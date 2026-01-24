@@ -534,3 +534,17 @@ const chatbotToggle = document.getElementById("chatbot-toggle");
             setTimeout(() => addMessage(response, "rai"), 400);
         }
     });
+
+  const toggleBtn = document.getElementById("weatherToggle");
+  const dropdown = document.getElementById("weatherDropdown");
+
+    toggleBtn.addEventListener("click", () => {
+      dropdown.classList.toggle("hidden");
+      });
+
+fetch(`/api/weather?lat=${lat}&lon=${lon}`)
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    // lanjut logic cuaca kamu
+  });

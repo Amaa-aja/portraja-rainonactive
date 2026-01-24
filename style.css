@@ -869,3 +869,38 @@ body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:#0f172a}
       top: 20px;
   }
 }
+
+.weather-toggle {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  left: -350px;
+  position: relative;
+
+}
+
+.weather-toggle:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.weather-dropdown {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: white;
+  color: #333;
+  padding: 12px;
+  border-radius: 10px;
+  width: 200px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  font-size: 14px;
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}
