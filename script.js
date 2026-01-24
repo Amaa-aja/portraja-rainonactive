@@ -535,12 +535,6 @@ const chatbotToggle = document.getElementById("chatbot-toggle");
         }
     });
 
-fetch(`/api/weather?lat=${lat}&lon=${lon}`)
-  .then(res => res.json())
-  .then(data => {
-    console.log(data);
-    // lanjut logic cuaca kamu
-  });
 
   const toggleBtn = document.getElementById("weatherToggle");
 const dropdown = document.getElementById("weatherDropdown");
