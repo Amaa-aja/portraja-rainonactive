@@ -536,50 +536,77 @@ const chatbotToggle = document.getElementById("chatbot-toggle");
     });
 
 
+ document.addEventListener("DOMContentLoaded", () => {
+  // ===== ELEMENT =====
   const toggleBtn = document.getElementById("weatherToggle");
-const dropdown = document.getElementById("weatherDropdown");
+  const dropdown = document.getElementById("weatherDropdown");
 
-toggleBtn.addEventListener("click", () => {
-  dropdown.classList.toggle("hidden");
-});
+  const weatherLocation = document.getElementById("weatherLocation");
+  const weatherCondition = document.getElementById("weatherCondition");
+  const weatherTemp = document.getElementById("weatherTemp");
+  const weatherAlert = document.getElementById("weatherAlert");
+  const tempMini = document.getElementById("tempMini");
 
-navigator.geolocation.getCurrentPosition(
-  async (position) => {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-
-    const res = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
-    const data = await res.json();
-
-    console.log(data);
-
-    // ===== UPDATE UI =====
-    document.getElementById("weatherLocation").textContent =
-      `📍 ${data.name}, ${data.sys.country}`;
-
-    document.getElementById("weatherCondition").textContent =
-      `🌥️ ${data.weather[0].description}`;
-
-    const tempC = Math.round(data.main.temp - 273.15);
-    document.getElementById("weatherTemp").textContent =
-      `🌡️ ${tempC}°C`;
-
-    document.getElementById("tempMini").textContent =
-      `${tempC}°C`;
-
-    // ALERT SEDERHANA
-    let alertText = "✅ Cuaca aman";
-    const weatherMain = data.weather[0].main.toLowerCase();
-
-    if (weatherMain.includes("rain")) alertText = "⚠️ Hujan";
-    if (weatherMain.includes("storm")) alertText = "⛈️ Badai";
-    if (data.wind.speed > 10) alertText = "🌪️ Angin kencang";
-
-    document.getElementById("weatherAlert").textContent = alertText;
-  },
-  (error) => {
-    document.getElementById("weatherLocation").textContent =
-      "❌ Lokasi tidak diizinkan";
-    console.error(error);
+  if (!toggleBtn || !dropdown) {
+    console.error("Weather toggle / dropdown tidak ditemukan");
+    return;
   }
-);
+
+  // ===== TOGGLE BUTTON =====
+  toggleBtn.addEventListener("click", () => {
+    dropdown.classList.toggle("hidden");
+  });
+
+  // ===== GEOLOCATION + FETCH WEATHER =====
+  if (!navigator.geolocation) {
+    weatherLocation.textContent = "❌ Browser tidak mendukung lokasi";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      try {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        const res = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
+        const data = await res.json();
+
+        console.log("Weather data:", data);
+
+        // ===== UPDATE UI =====
+        const tempC = Math.round(data.main.temp); // SUDAH °C
+
+        weatherLocation.textContent =
+          `📍 ${data.name}, ${data.sys.country}`;
+
+        weatherCondition.textContent =
+          `🌥️ ${data.weather[0].description}`;
+
+        weatherTemp.textContent =
+          `🌡️ ${tempC}°C`;
+
+        tempMini.textContent =
+          `${tempC}°C`;
+
+        // ===== ALERT LOGIC =====
+        let alertText = "✅ Cuaca aman";
+        const weatherMain = data.weather[0].main.toLowerCase();
+
+        if (weatherMain.includes("rain")) alertText = "⚠️ Hujan";
+        if (weatherMain.includes("storm")) alertText = "⛈️ Badai";
+        if (data.wind && data.wind.speed > 10)
+          alertText = "🌪️ Angin kencang";
+
+        weatherAlert.textContent = alertText;
+      } catch (err) {
+        console.error(err);
+        weatherLocation.textContent = "❌ Gagal memuat cuaca";
+      }
+    },
+    (error) => {
+      console.error(error);
+      weatherLocation.textContent = "❌ Lokasi tidak diizinkan";
+    }
+  );
+});
