@@ -28,7 +28,7 @@ function RAI_Respond(userMessage) {
     const achievementKeywords = ["prestasi", "pencapaian", "achievement", "juara", "menang", "keberhasilan", "award"];
     const foodKeywords = ["makanan", "favorit", "suka makan", "makan apa", "laper", "mie ayam", "nasi padang", "sate", "kebab"];
     const affectionKeywords = ["cinta", "suka", "sayang", "jadian", "kencan", "mau ga", "kamu mau"];
-    const dateTimeKeywords = ["jam berapa", "tanggal berapa", "hari ini", "sekarang", "waktu"];
+    const dateTimeKeywords = ["jam berapa", "tanggal berapa", "hari ini", "sekarang", "waktu", "jam"];
     const mathKeywords = ["berapa", "hitung", "kali", "tambah", "kurang", "bagi", "jumlah", "x", "/"]; 
     const generalDefinitionKeywords = ["apa itu", "definisi", "artinya", "jelaskan", "apa"]; 
     const knowEverythingKeywords = ["tahu apa", "apa aja yang kamu tahu", "kamu tahu apa", "kamu bisa apa", "kamu bisa ngapain", "apa yang kamu tahu", "apa kamu tahu"];
