@@ -542,7 +542,7 @@ fetch(`/api/weather?lat=${lat}&lon=${lon}`)
     // lanjut logic cuaca kamu
   });
 
-    const toggleBtn = document.getElementById("weatherToggle");
+  const toggleBtn = document.getElementById("weatherToggle");
 const dropdown = document.getElementById("weatherDropdown");
 
 toggleBtn.addEventListener("click", () => {
@@ -556,6 +556,8 @@ navigator.geolocation.getCurrentPosition(
 
     const res = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
     const data = await res.json();
+
+    console.log(data);
 
     // ===== UPDATE UI =====
     document.getElementById("weatherLocation").textContent =
@@ -572,8 +574,8 @@ navigator.geolocation.getCurrentPosition(
       `${tempC}°C`;
 
     // ALERT SEDERHANA
-    const weatherMain = data.weather[0].main.toLowerCase();
     let alertText = "✅ Cuaca aman";
+    const weatherMain = data.weather[0].main.toLowerCase();
 
     if (weatherMain.includes("rain")) alertText = "⚠️ Hujan";
     if (weatherMain.includes("storm")) alertText = "⛈️ Badai";
@@ -581,8 +583,9 @@ navigator.geolocation.getCurrentPosition(
 
     document.getElementById("weatherAlert").textContent = alertText;
   },
-  () => {
+  (error) => {
     document.getElementById("weatherLocation").textContent =
       "❌ Lokasi tidak diizinkan";
+    console.error(error);
   }
 );
