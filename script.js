@@ -612,23 +612,19 @@ const chatbotToggle = document.getElementById("chatbot-toggle");
 });
 
 
-// 1. Inisialisasi Supabase
+// 1. Inisialisasi Supabase (Sudah benar)
 const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
-const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
+const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; // Pakai key aslimu
 const _supabase = supabase.createClient(SB_URL, SB_KEY);
 
-// 2. Otomatis Catat Pengunjung (Setiap web dibuka)
+// 2. Lapor Visitor
 async function laporVisitor() {
   await _supabase.from('visits').insert([{}]);
 }
 laporVisitor();
 
-// 3. Kirim Pesan Contact
-// 1. Pastikan variabel _supabase sudah benar di baris atas
-// 2. Ganti logika pengiriman form dengan ini:
-
+// 3. Kirim Pesan Contact (Gunakan ini agar nyambung ke form)
 const contactForm = document.getElementById('contact-form');
-
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -642,9 +638,9 @@ if (contactForm) {
     const { error } = await _supabase.from('contacts').insert([dataPesan]);
 
     if (error) {
-      alert("Gagal: " + error.message);
+      alert("Gagal kirim: " + error.message);
     } else {
-      alert("Pesan Telah Terkirim!");
+      alert("Pesan Terkirim Mas Raja!");
       contactForm.reset();
     }
   });
