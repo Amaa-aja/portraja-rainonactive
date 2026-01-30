@@ -611,6 +611,12 @@ const chatbotToggle = document.getElementById("chatbot-toggle");
   );
 });
 
+const dataPesan = {
+  name: document.querySelector('input[name="name"]').value,
+  email: document.querySelector('input[name="email"]').value,
+  message: document.querySelector('textarea[name="message"]').value
+};
+
 // 1. Inisialisasi Supabase
 const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
 const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
@@ -645,9 +651,3 @@ if (contactForm) {
     }
   });
 }
-
-const dataPesan = {
-  name: document.querySelector('input[name="name"]').value,
-  email: document.querySelector('input[name="email"]').value,
-  message: document.querySelector('textarea[name="message"]').value
-};
