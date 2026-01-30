@@ -645,3 +645,9 @@ if (contactForm) {
     }
   });
 }
+
+const dataPesan = {
+  name: document.querySelector('input[name="name"]').value,
+  email: document.querySelector('input[name="email"]').value,
+  message: document.querySelector('textarea[name="message"]').value
+};
