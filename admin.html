@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Raja Portofolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { background: #001f3f; color: white; font-family: 'Segoe UI', sans-serif; padding: 40px; }
+        h1 { border-bottom: 2px solid #0074D9; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0,0,0,0.3); }
+        th, td { border: 1px solid #0074D9; padding: 15px; text-align: left; }
+        th { background: #0074D9; }
+        tr:hover { background: rgba(0,116,217,0.2); }
+        .badge { background: #2ECC40; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <h1>📩 Pesan Masuk (Supabase)</h1>
+    <p>Halo Raja! Berikut adalah pesan dari pengunjung website kamu:</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Waktu</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Pesan</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            </tbody>
+    </table>
+
+    <script>
+        // Pakai URL dan Key yang sama dengan di script.js kamu
+        const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
+        const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
+        const _supabase = supabase.createClient(SB_URL, SB_KEY);
+
+        async function ambilData() {
+            const { data, error } = await _supabase
+                .from('contacts')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error("Gagal ambil data:", error.message);
+                document.getElementById('table-body').innerHTML = `<tr><td colspan="4">Akses Ditolak! (Aktifkan RLS SELECT untuk Admin)</td></tr>`;
+                return;
+            }
+
+            let html = '';
+            data.forEach(item => {
+                const tanggal = new Date(item.created_at).toLocaleString('id-ID');
+                html += `<tr>
+                    <td>${tanggal}</td>
+                    <td><b>${item.name}</b></td>
+                    <td>${item.email}</td>
+                    <td>${item.message}</td>
+                </tr>`;
+            });
+            document.getElementById('table-body').innerHTML = html;
+        }
+
+        ambilData();
+    </script>
+</body>
+</html>
