@@ -631,27 +631,21 @@ const contactForm = document.getElementById('contact-form');
 
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Biar halaman gak refresh/kedip
+    e.preventDefault();
     
-    // Kita ambil data pakai teknik FormData supaya GAK PERLU ubah HTML
-    const formData = new FormData(contactForm);
     const dataPesan = {
-      name: formData.get('name'),    // mengambil dari atribut name="name"
-      email: formData.get('email'),  // mengambil dari atribut name="email"
-      message: formData.get('message') // mengambil dari atribut name="message"
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value
     };
 
-    try {
-      // Proses kirim ke tabel 'contacts' di Supabase
-      const { error } = await _supabase.from('contacts').insert([dataPesan]);
-      
-      if (error) throw error;
+    const { error } = await _supabase.from('contacts').insert([dataPesan]);
 
-      alert("Pesan Telah Terkirim!"); 
-      contactForm.reset(); // Kosongkan form setelah sukses
-    } catch (err) {
-      console.error("Detail Error:", err);
-      alert("Gagal Kirim: " + err.message);
+    if (error) {
+      alert("Gagal: " + error.message);
+    } else {
+      alert("Pesan Telah Terkirim!");
+      contactForm.reset();
     }
   });
 }
