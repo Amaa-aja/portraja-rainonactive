@@ -624,30 +624,34 @@ async function laporVisitor() {
 laporVisitor();
 
 // 3. Kirim Pesan Contact
+// 1. Pastikan variabel _supabase sudah benar di baris atas
+// 2. Ganti logika pengiriman form dengan ini:
+
 const contactForm = document.getElementById('contact-form');
+
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Teknik FormData: Ambil data berdasarkan atribut 'name' (name, email, message)
-    // Tanpa perlu ubah HTML sedikit pun
+    e.preventDefault(); // Biar halaman gak refresh/kedip
+    
+    // Kita ambil data pakai teknik FormData supaya GAK PERLU ubah HTML
     const formData = new FormData(contactForm);
     const dataPesan = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message')
+      name: formData.get('name'),    // mengambil dari atribut name="name"
+      email: formData.get('email'),  // mengambil dari atribut name="email"
+      message: formData.get('message') // mengambil dari atribut name="message"
     };
 
-    console.log("Data siap kirim:", dataPesan);
+    try {
+      // Proses kirim ke tabel 'contacts' di Supabase
+      const { error } = await _supabase.from('contacts').insert([dataPesan]);
+      
+      if (error) throw error;
 
-    // Kirim ke Supabase
-    const { error } = await _supabase.from('contacts').insert([dataPesan]);
-
-    if (error) {
-        alert("Gagal kirim: " + error.message);
-    } else {
-        alert("Pesan Terkirim!");
-        contactForm.reset();
+      alert("Pesan Telah Terkirim!"); 
+      contactForm.reset(); // Kosongkan form setelah sukses
+    } catch (err) {
+      console.error("Detail Error:", err);
+      alert("Gagal Kirim: " + err.message);
     }
   });
 }
