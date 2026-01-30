@@ -889,8 +889,8 @@ body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:#0f172a}
 
 .weather-dropdown {
   position: absolute;
-  top: 45px;
-  left: 0;
+  top: 65px;
+  left: 1125px;
   background: white;
   color: #333;
   padding: 12px;
