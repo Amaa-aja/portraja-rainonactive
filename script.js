@@ -611,11 +611,6 @@ const chatbotToggle = document.getElementById("chatbot-toggle");
   );
 });
 
-const dataPesan = {
-  name: document.querySelector('input[name="name"]').value,
-  email: document.querySelector('input[name="email"]').value,
-  message: document.querySelector('textarea[name="message"]').value
-};
 
 // 1. Inisialisasi Supabase
 const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
@@ -629,25 +624,30 @@ async function laporVisitor() {
 laporVisitor();
 
 // 3. Kirim Pesan Contact
-const contactForm = document.getElementById('contact-form'); // Pastikan ID form di HTML-mu 'contact-form'
+const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    // Ambil data dari input (Pastikan ID inputnya sesuai)
+
+    // Teknik FormData: Ambil data berdasarkan atribut 'name' (name, email, message)
+    // Tanpa perlu ubah HTML sedikit pun
+    const formData = new FormData(contactForm);
     const dataPesan = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      message: document.getElementById('message').value
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message')
     };
 
+    console.log("Data siap kirim:", dataPesan);
+
+    // Kirim ke Supabase
     const { error } = await _supabase.from('contacts').insert([dataPesan]);
 
     if (error) {
-      alert("Gagal kirim pesan: " + error.message);
+        alert("Gagal kirim: " + error.message);
     } else {
-      alert("Pesan berhasil terkirim ke database Raja!");
-      contactForm.reset();
+        alert("Pesan Terkirim!");
+        contactForm.reset();
     }
   });
 }
