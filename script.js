@@ -640,7 +640,7 @@ if (contactForm) {
     if (error) {
       alert("Gagal kirim: " + error.message);
     } else {
-      alert("Pesan Terkirim Mas Raja!");
+      alert("Pesan Telah Terkirim!");
       contactForm.reset();
     }
   });
