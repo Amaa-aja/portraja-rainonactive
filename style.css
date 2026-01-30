@@ -890,7 +890,7 @@ body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:#0f172a}
 .weather-dropdown {
   position: absolute;
   top: 65px;
-  left: 1125px;
+  right: 20px;
   background: white;
   color: #333;
   padding: 12px;
