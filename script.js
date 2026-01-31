@@ -630,10 +630,41 @@ laporVisitor();
 
 // 3. Kirim Pesan Contact (Gunakan ini agar nyambung ke form)
 const contactForm = document.getElementById('contact-form');
+async function cekStatusPesan() {
+  const btnKirim = document.querySelector('#contact-form button[type="submit"]');
+  
+  try {
+    const { data } = await _supabase.from('settings').select('is_maintenance').eq('id', 1).single();
+
+    if (data && data.is_maintenance) {
+      if (btnKirim) {
+        btnKirim.disabled = true;
+        btnKirim.innerText = "PESAN DINONAKTIFKAN";
+        btnKirim.style.background = "#333";
+        btnKirim.style.color = "#888";
+        btnKirim.style.cursor = "not-allowed";
+      }
+    }
+  } catch (err) {
+    console.log("Status pesan: Aktif");
+  }
+}
+
+// Jalankan pengecekan saat web dibuka
+cekStatusPesan();
+
+// Modifikasi event listener yang sudah ada
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
+    // Cek sekali lagi sebelum kirim
+    const { data } = await _supabase.from('settings').select('is_maintenance').eq('id', 1).single();
+    if (data && data.is_maintenance) {
+      alert("Maaf, Raja sedang tidak menerima pesan saat ini.");
+      return;
+    }
+
     const dataPesan = {
       name: document.getElementById('name').value,
       email: document.getElementById('email').value,
@@ -641,7 +672,6 @@ if (contactForm) {
     };
 
     const { error } = await _supabase.from('contacts').insert([dataPesan]);
-
     if (error) {
       alert("Gagal kirim: " + error.message);
     } else {
@@ -650,30 +680,3 @@ if (contactForm) {
     }
   });
 }
-
-async function cekMaintenance() {
-  try {
-    const { data, error } = await _supabase
-      .from('settings')
-      .select('is_maintenance')
-      .single();
-
-    if (error) {
-      console.log("Maintenance mode is OFF (or Table/ID not found)");
-      return;
-    }
-
-    if (data && data.is_maintenance) {
-      const screen = document.getElementById('maintenance-screen');
-      if (screen) {
-        screen.style.display = 'flex'; // Munculkan layar maintenance
-        document.body.style.overflow = 'hidden'; // Kunci scroll
-      }
-    }
-  } catch (err) {
-    console.error("System error:", err);
-  }
-}
-
-// WAJIB DIPANGGIL AGAR JALAN
-cekMaintenance();
