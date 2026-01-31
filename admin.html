@@ -60,17 +60,31 @@
           <h2 class="text-3xl font-bold mt-1" id="stat-visits">0</h2>
           <p class="text-xs text-blue-400 mt-2">Live Tracking</p>
         </div>
-        <div class="glass-card p-6 rounded-2xl border-l-4 border-[#ccff00]">
-          <p class="text-gray-400 text-sm">Project Deals</p>
-          <h2 class="text-3xl font-bold mt-1">8</h2>
-          <p class="text-xs text-gray-500 mt-2">Waiting list: 2</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl">
-          <p class="text-gray-400 text-sm">Response Time</p>
-          <h2 class="text-3xl font-bold mt-1">2h</h2>
-          <p class="text-xs text-red-400 mt-2">Need improvement</p>
-        </div>
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+  <div class="glass-card p-6 rounded-2xl">
+    <p class="text-gray-400 text-sm">Total Messages</p>
+    <h2 class="text-3xl font-bold mt-1" id="stat-total">0</h2>
+    <p class="text-xs neon-green mt-2">All time records</p>
+  </div>
+
+  <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500">
+    <p class="text-gray-400 text-sm">Latest Sender</p>
+    <h2 class="text-xl font-bold mt-2 truncate" id="stat-latest-user">-</h2>
+    <p class="text-xs text-blue-400 mt-2">Waiting for reply</p>
+  </div>
+
+  <div class="glass-card p-6 rounded-2xl border-l-4 border-[#ccff00]">
+    <p class="text-gray-400 text-sm">Active Projects</p>
+    <h2 class="text-3xl font-bold mt-1">3</h2>
+    <p class="text-xs text-gray-500 mt-2">In development</p>
+  </div>
+
+  <div class="glass-card p-6 rounded-2xl">
+    <p class="text-gray-400 text-sm">Database Status</p>
+    <h2 class="text-3xl font-bold mt-1 text-green-500">LIVE</h2>
+    <p class="text-xs text-gray-500 mt-2">Connected to Supabase</p>
+  </div>
+</div>
 
       <div class="glass-card rounded-2xl overflow-hidden">
         <div class="p-6 border-b border-gray-800 flex justify-between items-center">
@@ -103,39 +117,32 @@ const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
 const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
 const _supabase = supabase.createClient(SB_URL, SB_KEY);
 
-// 2. Fungsi Utama Dashboard
+// 2. Fungsi Utama Ambil Data
 async function ambilDataDashboard() {
     try {
         console.log("Sedang memuat data dashboard...");
 
-        // A. Ambil Data Pesan (Contacts)
+        // Ambil data dari tabel 'contacts'
         const { data: contacts, error: errContacts } = await _supabase
             .from('contacts')
             .select('*')
             .order('created_at', { ascending: false });
 
-        // B. Ambil JUMLAH ASLI Pengunjung (Visits)
-        // Menggunakan count: 'exact' untuk mendapatkan angka real dari tabel visits
-        const { count: totalVisits, error: errVisits } = await _supabase
-            .from('visits')
-            .select('*', { count: 'exact', head: true });
-
         if (errContacts) throw errContacts;
-        if (errVisits) throw errVisits;
 
-        // --- UPDATE STATISTIK ATAS ---
+        // --- UPDATE KARTU STATISTIK ---
         
-        // Update Total Messages (Berdasarkan jumlah baris di tabel contacts)
+        // 1. Total Messages
         const statTotalMsg = document.getElementById('stat-total');
         if (statTotalMsg) statTotalMsg.innerText = contacts.length;
 
-        // Update Total Visits (Berdasarkan jumlah baris di tabel visits)
-        const statTotalVisits = document.getElementById('stat-visits');
-        if (statTotalVisits) {
-            statTotalVisits.innerText = totalVisits || 0;
+        // 2. Latest Sender (Nama pengirim pesan paling baru)
+        const statLatest = document.getElementById('stat-latest-user');
+        if (statLatest) {
+            statLatest.innerText = contacts.length > 0 ? contacts[0].name : "No Message";
         }
 
-        // --- UPDATE TABEL PESAN ---
+        // --- RENDER TABEL PESAN ---
         const tbody = document.getElementById('table-body');
         if (!tbody) return;
 
@@ -165,14 +172,13 @@ async function ambilDataDashboard() {
 
     } catch (error) {
         console.error("Terjadi kesalahan:", error.message);
-        alert("Gagal memuat data: " + error.message);
     }
 }
 
-// 3. Jalankan otomatis saat halaman dibuka
+// Jalankan otomatis saat halaman dibuka
 document.addEventListener('DOMContentLoaded', ambilDataDashboard);
 
-// 4. Fungsi untuk tombol Refresh Data
+// Fungsi untuk tombol Refresh
 function refreshDashboard() {
     ambilDataDashboard();
 }
