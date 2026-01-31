@@ -653,25 +653,27 @@ if (contactForm) {
 
 async function cekMaintenance() {
   try {
-    // Pastikan _supabase sudah didefinisikan di atas
     const { data, error } = await _supabase
       .from('settings')
       .select('is_maintenance')
       .single();
 
-    if (error) return; // Diam saja kalau error agar web tidak rusak
+    if (error) {
+      console.log("Maintenance mode is OFF (or Table/ID not found)");
+      return;
+    }
 
     if (data && data.is_maintenance) {
       const screen = document.getElementById('maintenance-screen');
       if (screen) {
-        screen.style.display = 'flex'; 
-        document.body.style.overflow = 'hidden'; 
+        screen.style.display = 'flex'; // Munculkan layar maintenance
+        document.body.style.overflow = 'hidden'; // Kunci scroll
       }
     }
   } catch (err) {
-    console.log("Maintenance Check Off");
+    console.error("System error:", err);
   }
 }
 
-// Jalankan fungsi
+// WAJIB DIPANGGIL AGAR JALAN
 cekMaintenance();
