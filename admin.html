@@ -3,185 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard | Raja Portofolio</title>
+  <title>Login Admin | Raja Portofolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #0d0d0d; color: #e5e7eb; }
-    .glass-card { background: rgba(25, 25, 25, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
+    body { font-family: 'Inter', sans-serif; background-color: #0d0d0d; color: #e5e7eb; margin: 0; }
+    .glass-card { background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
     .neon-green { color: #ccff00; }
     .bg-neon-green { background-color: #ccff00; }
-    .sidebar-link:hover { background: rgba(204, 255, 0, 0.1); color: #ccff00; }
     .custom-scrollbar::-webkit-scrollbar { width: 6px; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+    
+    /* Login Overlay Style */
+    #login-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: #0d0d0d; z-index: 9999; display: flex; align-items: center; justify-content: center;
+    }
   </style>
 </head>
-<body class="flex h-screen overflow-hidden">
+<body class="custom-scrollbar">
 
-  <aside class="w-64 glass-card border-r border-gray-800 flex flex-col">
-    <div class="p-6 text-2xl font-bold neon-green tracking-tighter">MyPortAdminRaja</div>
-    <nav class="flex-1 px-4 space-y-2 mt-4">
-      <a href="#" class="sidebar-link flex items-center p-3 rounded-xl transition bg-neon-green text-black font-semibold">
-        <span class="mr-3 text-lg">📊</span> Overview
-      </a>
-      <a href="#" class="sidebar-link flex items-center p-3 rounded-xl transition text-gray-400">
-        <span class="mr-3 text-lg">📩</span> Messages
-      </a>
-      <a href="#" class="sidebar-link flex items-center p-3 rounded-xl transition text-gray-400">
-        <span class="mr-3 text-lg">📈</span> Analytics
-      </a>
-    </nav>
-    <div class="p-6 border-t border-gray-800 text-sm text-gray-500 text-center">
-      Logged as <span class="text-white">RajaFidhiazka</span>
-    </div>
-  </aside>
-
-  <main class="flex-1 flex flex-col overflow-hidden">
-    <header class="h-20 glass-card border-b border-gray-800 flex items-center justify-between px-8">
-      <h1 class="text-xl font-semibold">Admin Overview</h1>
-      <div class="flex items-center space-x-4">
-        <span class="text-sm text-gray-400">Januari 2026</span>
-        <div class="w-10 h-10 rounded-full bg-neon-green text-black flex items-center justify-center font-bold">R</div>
-      </div>
-    </header>
-
-    <section class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+  <div id="login-overlay">
+    <div class="glass-card p-10 rounded-3xl w-full max-w-md border border-gray-800 shadow-2xl text-center">
+      <div class="w-16 h-16 bg-neon-green rounded-2xl mx-auto mb-6 flex items-center justify-center text-black text-2xl font-bold shadow-[0_0_20px_rgba(204,255,0,0.3)]">R</div>
+      <h2 class="text-2xl font-bold mb-2">Admin Login</h2>
+      <p class="text-gray-500 text-sm mb-8">Silakan masukkan kredensial untuk akses dashboard</p>
       
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div class="glass-card p-6 rounded-2xl">
-          <p class="text-gray-400 text-sm">Total Messages</p>
-          <h2 class="text-3xl font-bold mt-1" id="stat-total">0</h2>
-          <p class="text-xs neon-green mt-2">↑ 12% vs last month</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl">
-          <p class="text-gray-400 text-sm">Total Visits</p>
-          <h2 class="text-3xl font-bold mt-1" id="stat-visits">0</h2>
-          <p class="text-xs text-blue-400 mt-2">Live Tracking</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-  <div class="glass-card p-6 rounded-2xl">
-    <p class="text-gray-400 text-sm">Total Messages</p>
-    <h2 class="text-3xl font-bold mt-1" id="stat-total">0</h2>
-    <p class="text-xs neon-green mt-2">All time records</p>
-  </div>
-
-  <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500">
-    <p class="text-gray-400 text-sm">Latest Sender</p>
-    <h2 class="text-xl font-bold mt-2 truncate" id="stat-latest-user">-</h2>
-    <p class="text-xs text-blue-400 mt-2">Waiting for reply</p>
-  </div>
-
-  <div class="glass-card p-6 rounded-2xl border-l-4 border-[#ccff00]">
-    <p class="text-gray-400 text-sm">Active Projects</p>
-    <h2 class="text-3xl font-bold mt-1">3</h2>
-    <p class="text-xs text-gray-500 mt-2">In development</p>
-  </div>
-
-  <div class="glass-card p-6 rounded-2xl">
-    <p class="text-gray-400 text-sm">Database Status</p>
-    <h2 class="text-3xl font-bold mt-1 text-green-500">LIVE</h2>
-    <p class="text-xs text-gray-500 mt-2">Connected to Supabase</p>
-  </div>
-</div>
-
-      <div class="glass-card rounded-2xl overflow-hidden">
-        <div class="p-6 border-b border-gray-800 flex justify-between items-center">
-          <h3 class="font-bold text-lg">Incoming Messages</h3>
-          <button onclick="ambilData()" class="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-lg transition">Refresh Data</button>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left">
-            <thead class="bg-black/30 text-gray-400 text-xs uppercase">
-              <tr>
-                <th class="px-6 py-4">Sender</th>
-                <th class="px-6 py-4">Email</th>
-                <th class="px-6 py-4">Message</th>
-                <th class="px-6 py-4">Time</th>
-              </tr>
-            </thead>
-            <tbody id="table-body" class="divide-y divide-gray-800">
-              <tr><td colspan="4" class="p-10 text-center text-gray-600">Memuat data...</td></tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="space-y-4">
+        <input type="text" id="username" placeholder="Username" class="w-full p-4 bg-black/50 border border-gray-800 rounded-xl focus:outline-none focus:border-[#ccff00] transition text-sm">
+        <input type="password" id="password" placeholder="Password" class="w-full p-4 bg-black/50 border border-gray-800 rounded-xl focus:outline-none focus:border-[#ccff00] transition text-sm">
+        <button onclick="cekLogin()" class="w-full p-4 bg-neon-green text-black font-bold rounded-xl hover:opacity-90 transition shadow-[0_0_15px_rgba(204,255,0,0.2)]">MASUK SEKARANG</button>
       </div>
+      <p id="login-error" class="text-red-500 text-xs mt-4 hidden">Username atau Password salah!</p>
+    </div>
+  </div>
 
-    </section>
-  </main>
+  <div id="dashboard-wrapper" class="hidden">
+    <div class="flex h-screen overflow-hidden">
+      <aside class="w-64 glass-card border-r border-gray-800 flex flex-col shrink-0">
+        <div class="p-8 text-2xl font-bold neon-green tracking-tighter flex items-center gap-2">
+          RAJA.DEV
+        </div>
+        <nav class="flex-1 px-4 mt-4">
+          <div class="p-3 bg-neon-green text-black rounded-xl font-bold">📊 Overview</div>
+        </nav>
+        <div class="p-6 border-t border-gray-800 text-xs">
+          <button onclick="logout()" class="text-red-400 hover:text-red-300 transition">Logout Account</button>
+        </div>
+      </aside>
+
+      <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-20 glass-card border-b border-gray-800 flex items-center justify-between px-8">
+          <h1 class="text-xl font-semibold text-white">Admin Dashboard</h1>
+          <button onclick="refreshDashboard()" class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition">🔄 Refresh</button>
+        </header>
+
+        <section class="flex-1 overflow-y-auto p-8 bg-[#080808]">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="glass-card p-6 rounded-2xl">
+              <p class="text-gray-400 text-sm">Total Messages</p>
+              <h2 class="text-4xl font-bold mt-2 neon-green" id="stat-total">0</h2>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500">
+              <p class="text-gray-400 text-sm">Latest Sender</p>
+              <h2 class="text-xl font-bold mt-2 truncate" id="stat-latest-user">-</h2>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border-l-4 border-yellow-500">
+              <p class="text-gray-400 text-sm">Server Status</p>
+              <h2 class="text-xl font-bold mt-2 text-green-500">SECURE LOGIN</h2>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden">
+            <table class="w-full text-left">
+              <thead class="bg-black/30 text-gray-400 text-xs uppercase font-semibold">
+                <tr>
+                  <th class="px-6 py-4">Sender</th>
+                  <th class="px-6 py-4">Contact Info</th>
+                  <th class="px-6 py-4">Message Content</th>
+                  <th class="px-6 py-4">Time</th>
+                </tr>
+              </thead>
+              <tbody id="table-body" class="divide-y divide-gray-800">
+                </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
 
   <script>
- // 1. Inisialisasi Supabase
-const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
-const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
-const _supabase = supabase.createClient(SB_URL, SB_KEY);
+    // 1. Logika Login
+    function cekLogin() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      const errorMsg = document.getElementById('login-error');
 
-// 2. Fungsi Utama Ambil Data
-async function ambilDataDashboard() {
-    try {
-        console.log("Sedang memuat data dashboard...");
-
-        // Ambil data dari tabel 'contacts'
-        const { data: contacts, error: errContacts } = await _supabase
-            .from('contacts')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-        if (errContacts) throw errContacts;
-
-        // --- UPDATE KARTU STATISTIK ---
-        
-        // 1. Total Messages
-        const statTotalMsg = document.getElementById('stat-total');
-        if (statTotalMsg) statTotalMsg.innerText = contacts.length;
-
-        // 2. Latest Sender (Nama pengirim pesan paling baru)
-        const statLatest = document.getElementById('stat-latest-user');
-        if (statLatest) {
-            statLatest.innerText = contacts.length > 0 ? contacts[0].name : "No Message";
-        }
-
-        // --- RENDER TABEL PESAN ---
-        const tbody = document.getElementById('table-body');
-        if (!tbody) return;
-
-        if (contacts.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" class="p-10 text-center text-gray-500">Belum ada pesan masuk.</td></tr>';
-        } else {
-            tbody.innerHTML = contacts.map(item => `
-                <tr class="hover:bg-white/5 transition border-b border-gray-800/50">
-                    <td class="px-6 py-4">
-                        <div class="flex items-center">
-                            <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center mr-3 text-xs font-bold text-[#ccff00] border border-[#ccff00]/20">
-                                ${(item.name || 'R').charAt(0).toUpperCase()}
-                            </div>
-                            <span class="font-medium text-gray-200">${item.name || 'Anonymous'}</span>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 text-gray-400 text-sm">${item.email || '-'}</td>
-                    <td class="px-6 py-4 text-gray-300 text-sm italic">"${item.message || ''}"</td>
-                    <td class="px-6 py-4 text-xs text-gray-500">
-                        ${new Date(item.created_at).toLocaleString('id-ID', { 
-                            day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' 
-                        })}
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-    } catch (error) {
-        console.error("Terjadi kesalahan:", error.message);
+      if (user === "RajaFidhiazka" && pass === "rajaganteng") {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('dashboard-wrapper').classList.remove('hidden');
+        ambilDataDashboard(); // Panggil data setelah login sukses
+      } else {
+        errorMsg.classList.remove('hidden');
+        errorMsg.classList.add('animate-bounce');
+      }
     }
-}
 
-// Jalankan otomatis saat halaman dibuka
-document.addEventListener('DOMContentLoaded', ambilDataDashboard);
+    function logout() {
+      location.reload(); // Sederhana, refresh halaman akan mengembalikan login overlay
+    }
 
-// Fungsi untuk tombol Refresh
-function refreshDashboard() {
-    ambilDataDashboard();
-}
+    // 2. Logika Supabase (Sama seperti sebelumnya)
+    const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
+    const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
+    const _supabase = supabase.createClient(SB_URL, SB_KEY);
+
+    async function ambilDataDashboard() {
+      try {
+        const { data: contacts, error } = await _supabase
+          .from('contacts')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        document.getElementById('stat-total').innerText = contacts.length;
+        document.getElementById('stat-latest-user').innerText = contacts.length > 0 ? contacts[0].name : "No Message";
+
+        const tbody = document.getElementById('table-body');
+        tbody.innerHTML = contacts.map(item => `
+          <tr class="hover:bg-white/[0.02] transition">
+            <td class="px-6 py-5 font-semibold text-gray-200">${item.name}</td>
+            <td class="px-6 py-5 text-gray-400 text-sm">${item.email}</td>
+            <td class="px-6 py-5 text-gray-300 text-sm italic">"${item.message}"</td>
+            <td class="px-6 py-5 text-xs text-gray-500 font-mono">
+                ${new Date(item.created_at).toLocaleString('id-ID', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}
+            </td>
+          </tr>
+        `).join('');
+      } catch (e) { console.error(e.message); }
+    }
+
+    function refreshDashboard() { ambilDataDashboard(); }
   </script>
 </body>
 </html>
