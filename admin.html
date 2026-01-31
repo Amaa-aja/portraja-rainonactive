@@ -3,144 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Admin | Raja Portofolio</title>
+  <title>Admin Dashboard | Raja Dev</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #0d0d0d; color: #e5e7eb; margin: 0; }
+    body { font-family: 'Inter', sans-serif; background-color: #0d0d0d; color: #e5e7eb; margin: 0; overflow: hidden; }
     .glass-card { background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
     .neon-green { color: #ccff00; }
     .bg-neon-green { background-color: #ccff00; }
-    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+    .sidebar-link:hover { background: rgba(204, 255, 0, 0.1); color: #ccff00; }
     
-    /* Login Overlay Style */
     #login-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: #0d0d0d; z-index: 9999; display: flex; align-items: center; justify-content: center;
+      position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center;
     }
+
+    #right-sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
   </style>
 </head>
-<body class="custom-scrollbar">
+<body>
 
   <div id="login-overlay">
-    <div class="glass-card p-10 rounded-3xl w-full max-w-md border border-gray-800 shadow-2xl text-center">
-      <div class="w-16 h-16 bg-neon-green rounded-2xl mx-auto mb-6 flex items-center justify-center text-black text-2xl font-bold shadow-[0_0_20px_rgba(204,255,0,0.3)]">R</div>
-      <h2 class="text-2xl font-bold mb-2">Admin Login</h2>
-      <p class="text-gray-500 text-sm mb-8">Silakan masukkan kredensial untuk akses dashboard</p>
-      
+    <div class="glass-card p-10 rounded-[2rem] w-full max-w-md text-center border-gray-800">
+      <div class="w-16 h-16 bg-neon-green rounded-2xl mx-auto mb-6 flex items-center justify-center text-black text-2xl font-bold shadow-[0_0_30px_rgba(204,255,0,0.3)]">R</div>
+      <h2 class="text-2xl font-bold">Welcome Back, Admin Raja</h2>
+      <p class="text-gray-500 text-sm mb-8 mt-2">Masuk untuk mengelola portfolio</p>
       <div class="space-y-4">
-        <input type="text" id="username" placeholder="Username" class="w-full p-4 bg-black/50 border border-gray-800 rounded-xl focus:outline-none focus:border-[#ccff00] transition text-sm">
-        <input type="password" id="password" placeholder="Password" class="w-full p-4 bg-black/50 border border-gray-800 rounded-xl focus:outline-none focus:border-[#ccff00] transition text-sm">
-        <button onclick="cekLogin()" class="w-full p-4 bg-neon-green text-black font-bold rounded-xl hover:opacity-90 transition shadow-[0_0_15px_rgba(204,255,0,0.2)]">MASUK SEKARANG</button>
+        <input type="text" id="username" placeholder="Username" class="w-full p-4 bg-black/40 border border-gray-800 rounded-xl focus:outline-none focus:border-[#ccff00] transition">
+        <input type="password" id="password" placeholder="Password" class="w-full p-4 bg-black/40 border border-gray-800 rounded-xl focus:outline-none focus:border-[#ccff00] transition">
+        <button onclick="cekLogin()" class="w-full p-4 bg-neon-green text-black font-bold rounded-xl hover:scale-[1.02] transition shadow-lg">MASUK DASHBOARD</button>
       </div>
-      <p id="login-error" class="text-red-500 text-xs mt-4 hidden">Username atau Password salah!</p>
+      <p id="login-error" class="text-red-500 text-xs mt-4 hidden italic">Akses ditolak! Username/Password salah.</p>
     </div>
   </div>
 
-  <div id="dashboard-wrapper" class="hidden">
-    <div class="flex h-screen overflow-hidden">
-      <aside class="w-64 glass-card border-r border-gray-800 flex flex-col shrink-0">
-        <div class="p-8 text-2xl font-bold neon-green tracking-tighter flex items-center gap-2">
-          RAJA.DEV
-        </div>
-        <nav class="flex-1 px-4 mt-4">
-          <div class="p-3 bg-neon-green text-black rounded-xl font-bold">📊 Overview</div>
-        </nav>
-        <div class="p-6 border-t border-gray-800 text-xs">
-          <button onclick="logout()" class="text-red-400 hover:text-red-300 transition">Logout Account</button>
-        </div>
-      </aside>
+  <div id="dashboard-wrapper" class="hidden h-screen flex">
+    
+    <aside class="w-64 glass-card border-r border-gray-800 flex flex-col shrink-0">
+      <div class="p-8 text-2xl font-bold neon-green tracking-tighter">MyPortRaja-Admin</div>
+      <nav class="flex-1 px-4 space-y-2 mt-4">
+        <div class="p-3 bg-neon-green text-black rounded-xl font-bold flex items-center"><span class="mr-3">📊</span> Overview</div>
+        <button onclick="toggleRightSidebar()" class="w-full sidebar-link flex items-center p-3 rounded-xl transition text-gray-400">
+          <span class="mr-3">⚡</span> Quick Actions
+        </button>
+      </nav>
+      <div class="p-6 border-t border-gray-800">
+        <button onclick="location.reload()" class="text-gray-500 text-xs hover:text-red-400 transition italic">Secure Logout</button>
+      </div>
+    </aside>
 
-      <main class="flex-1 flex flex-col overflow-hidden">
-        <header class="h-20 glass-card border-b border-gray-800 flex items-center justify-between px-8">
-          <h1 class="text-xl font-semibold text-white">Admin Dashboard</h1>
-          <button onclick="refreshDashboard()" class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition">🔄 Refresh</button>
-        </header>
+    <main class="flex-1 flex flex-col min-w-0 relative">
+      <header class="h-20 glass-card border-b border-gray-800 flex items-center justify-between px-8">
+        <h1 class="text-lg font-semibold tracking-wide">Command Center</h1>
+        <button onclick="refreshDashboard()" class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition text-sm">🔄 Refresh Data</button>
+      </header>
 
-        <section class="flex-1 overflow-y-auto p-8 bg-[#080808]">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="glass-card p-6 rounded-2xl">
-              <p class="text-gray-400 text-sm">Total Messages</p>
-              <h2 class="text-4xl font-bold mt-2 neon-green" id="stat-total">0</h2>
-            </div>
-            <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500">
-              <p class="text-gray-400 text-sm">Latest Sender</p>
-              <h2 class="text-xl font-bold mt-2 truncate" id="stat-latest-user">-</h2>
-            </div>
-            <div class="glass-card p-6 rounded-2xl border-l-4 border-yellow-500">
-              <p class="text-gray-400 text-sm">Server Status</p>
-              <h2 class="text-xl font-bold mt-2 text-green-500">SECURE LOGIN</h2>
-            </div>
+      <section class="flex-1 overflow-y-auto p-8 custom-scrollbar bg-[#080808]">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="glass-card p-6 rounded-2xl">
+            <p class="text-gray-400 text-xs uppercase tracking-widest">Total Messages</p>
+            <h2 class="text-4xl font-bold mt-2 neon-green" id="stat-total">0</h2>
           </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden">
-            <table class="w-full text-left">
-              <thead class="bg-black/30 text-gray-400 text-xs uppercase font-semibold">
-                <tr>
-                  <th class="px-6 py-4">Sender</th>
-                  <th class="px-6 py-4">Contact Info</th>
-                  <th class="px-6 py-4">Message Content</th>
-                  <th class="px-6 py-4">Time</th>
-                </tr>
-              </thead>
-              <tbody id="table-body" class="divide-y divide-gray-800">
-                </tbody>
-            </table>
+          <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500">
+            <p class="text-gray-400 text-xs uppercase tracking-widest">Latest Sender</p>
+            <h2 class="text-xl font-bold mt-2 truncate text-blue-400" id="stat-latest-user">-</h2>
           </div>
-        </section>
-      </main>
-    </div>
+          <div class="glass-card p-6 rounded-2xl border-l-4 border-yellow-500">
+            <p class="text-gray-400 text-xs uppercase tracking-widest">System Status</p>
+            <h2 class="text-xl font-bold mt-2 text-green-500">ENCRYPTED</h2>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+          <table class="w-full text-left">
+            <thead class="bg-black/40 text-gray-500 text-[10px] uppercase tracking-widest font-bold">
+              <tr>
+                <th class="px-6 py-4">Sender</th>
+                <th class="px-6 py-4">Email</th>
+                <th class="px-6 py-4">Message</th>
+                <th class="px-6 py-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="table-body" class="divide-y divide-gray-800/50 text-sm">
+              </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <aside id="right-sidebar" class="w-80 glass-card border-l border-gray-800 fixed right-0 top-0 h-full translate-x-full z-50 flex flex-col">
+      <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-black/20">
+        <h3 class="font-bold text-sm neon-green uppercase tracking-widest">Quick Controls</h3>
+        <button onclick="toggleRightSidebar()" class="text-gray-500 hover:text-white text-xl">✕</button>
+      </div>
+      <div class="p-8 space-y-8">
+        <div>
+          <label class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-4 block">Main Website</label>
+          <div class="flex items-center justify-between p-4 bg-white/[0.03] rounded-2xl border border-gray-800">
+            <span class="text-sm">Maintenance</span>
+            <input type="checkbox" onchange="alert('Maintenance mode synced!')" class="w-10 h-5 appearance-none bg-gray-700 rounded-full checked:bg-[#ccff00] relative transition-all cursor-pointer before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:rounded-full before:top-[2px] before:left-[2px] checked:before:left-[22px] before:transition-all">
+          </div>
+        </div>
+        <div class="space-y-3">
+          <label class="text-[10px] text-gray-500 uppercase font-bold tracking-widest block">Broadcast Tool</label>
+          <button class="w-full p-4 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-xl text-xs text-left hover:bg-blue-500/20 transition">✉️ Mass Email (Soon)</button>
+          <button class="w-full p-4 bg-green-500/10 text-green-400 border border-green-500/20 rounded-xl text-xs text-left hover:bg-green-500/20 transition">💬 WhatsApp Template</button>
+        </div>
+      </div>
+    </aside>
+
   </div>
 
   <script>
-    // 1. Logika Login
+    // 1. LOGIN LOGIC
     function cekLogin() {
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-      const errorMsg = document.getElementById('login-error');
-
-      if (user === "RajaFidhiazka" && pass === "rajaganteng") {
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      if (u === "RajaFidhiazka" && p === "rajaganteng") {
         document.getElementById('login-overlay').style.display = 'none';
         document.getElementById('dashboard-wrapper').classList.remove('hidden');
-        ambilDataDashboard(); // Panggil data setelah login sukses
+        ambilDataDashboard();
       } else {
-        errorMsg.classList.remove('hidden');
-        errorMsg.classList.add('animate-bounce');
+        document.getElementById('login-error').classList.remove('hidden');
       }
     }
 
-    function logout() {
-      location.reload(); // Sederhana, refresh halaman akan mengembalikan login overlay
+    // 2. TOGGLE SIDEBAR
+    function toggleRightSidebar() {
+      document.getElementById('right-sidebar').classList.toggle('translate-x-full');
     }
 
-    // 2. Logika Supabase (Sama seperti sebelumnya)
+    // 3. SUPABASE LOGIC
     const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
     const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
     const _supabase = supabase.createClient(SB_URL, SB_KEY);
 
     async function ambilDataDashboard() {
       try {
-        const { data: contacts, error } = await _supabase
-          .from('contacts')
-          .select('*')
-          .order('created_at', { ascending: false });
-
+        const { data: contacts, error } = await _supabase.from('contacts').select('*').order('created_at', { ascending: false });
         if (error) throw error;
 
         document.getElementById('stat-total').innerText = contacts.length;
-        document.getElementById('stat-latest-user').innerText = contacts.length > 0 ? contacts[0].name : "No Message";
+        document.getElementById('stat-latest-user').innerText = contacts.length > 0 ? contacts[0].name : "Empty";
 
         const tbody = document.getElementById('table-body');
         tbody.innerHTML = contacts.map(item => `
           <tr class="hover:bg-white/[0.02] transition">
-            <td class="px-6 py-5 font-semibold text-gray-200">${item.name}</td>
-            <td class="px-6 py-5 text-gray-400 text-sm">${item.email}</td>
-            <td class="px-6 py-5 text-gray-300 text-sm italic">"${item.message}"</td>
-            <td class="px-6 py-5 text-xs text-gray-500 font-mono">
-                ${new Date(item.created_at).toLocaleString('id-ID', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}
+            <td class="px-6 py-5 font-bold text-gray-200 underline decoration-neon-green/30 decoration-2 underline-offset-4">${item.name}</td>
+            <td class="px-6 py-5 text-gray-400 font-mono text-xs">${item.email}</td>
+            <td class="px-6 py-5 text-gray-300 italic truncate max-w-[200px]">"${item.message}"</td>
+            <td class="px-6 py-5 flex gap-2">
+              <button onclick="window.open('mailto:${item.email}')" class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-md text-[10px] uppercase font-bold hover:bg-blue-500/40">Email</button>
+              <button onclick="alert('Coming soon!')" class="px-3 py-1 bg-green-500/20 text-green-400 rounded-md text-[10px] uppercase font-bold hover:bg-green-500/40 text-nowrap">Direct WA</button>
             </td>
           </tr>
         `).join('');
