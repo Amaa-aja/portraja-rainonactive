@@ -619,7 +619,12 @@ const _supabase = supabase.createClient(SB_URL, SB_KEY);
 
 // 2. Lapor Visitor
 async function laporVisitor() {
-  await _supabase.from('visits').insert([{}]);
+  const { error } = await _supabase.from('visits').insert([{}]);
+  if (error) {
+    console.error("Visit Gagal:", error.message);
+  } else {
+    console.log("Visit Berhasil Dicatat!");
+  }
 }
 laporVisitor();
 
