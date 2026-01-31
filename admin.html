@@ -1,68 +1,189 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Panel - Raja Portofolio</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        body { background: #001f3f; color: white; font-family: 'Segoe UI', sans-serif; padding: 40px; }
-        h1 { border-bottom: 2px solid #0074D9; padding-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0,0,0,0.3); }
-        th, td { border: 1px solid #0074D9; padding: 15px; text-align: left; }
-        th { background: #0074D9; }
-        tr:hover { background: rgba(0,116,217,0.2); }
-        .badge { background: #2ECC40; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Raja Portofolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0d0d0d; color: #e5e7eb; }
+    .glass-card { background: rgba(25, 25, 25, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
+    .neon-green { color: #ccff00; }
+    .bg-neon-green { background-color: #ccff00; }
+    .sidebar-link:hover { background: rgba(204, 255, 0, 0.1); color: #ccff00; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+  </style>
 </head>
-<body>
-    <h1>📩 Pesan Masuk (Untuk Admin Raja)</h1>
-    <p>Halo Raja! Berikut adalah pesan dari pengunjung website kamu:</p>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Waktu</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Pesan</th>
-            </tr>
-        </thead>
-        <tbody id="table-body">
+<body class="flex h-screen overflow-hidden">
+
+  <aside class="w-64 glass-card border-r border-gray-800 flex flex-col">
+    <div class="p-6 text-2xl font-bold neon-green tracking-tighter">MyPortAdminRaja</div>
+    <nav class="flex-1 px-4 space-y-2 mt-4">
+      <a href="#" class="sidebar-link flex items-center p-3 rounded-xl transition bg-neon-green text-black font-semibold">
+        <span class="mr-3 text-lg">📊</span> Overview
+      </a>
+      <a href="#" class="sidebar-link flex items-center p-3 rounded-xl transition text-gray-400">
+        <span class="mr-3 text-lg">📩</span> Messages
+      </a>
+      <a href="#" class="sidebar-link flex items-center p-3 rounded-xl transition text-gray-400">
+        <span class="mr-3 text-lg">📈</span> Analytics
+      </a>
+    </nav>
+    <div class="p-6 border-t border-gray-800 text-sm text-gray-500 text-center">
+      Logged as <span class="text-white">RajaFidhiazka</span>
+    </div>
+  </aside>
+
+  <main class="flex-1 flex flex-col overflow-hidden">
+    <header class="h-20 glass-card border-b border-gray-800 flex items-center justify-between px-8">
+      <h1 class="text-xl font-semibold">Admin Overview</h1>
+      <div class="flex items-center space-x-4">
+        <span class="text-sm text-gray-400">Januari 2026</span>
+        <div class="w-10 h-10 rounded-full bg-neon-green text-black flex items-center justify-center font-bold">R</div>
+      </div>
+    </header>
+
+    <section class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="glass-card p-6 rounded-2xl">
+          <p class="text-gray-400 text-sm">Total Messages</p>
+          <h2 class="text-3xl font-bold mt-1" id="stat-total">0</h2>
+          <p class="text-xs neon-green mt-2">↑ 12% vs last month</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <p class="text-gray-400 text-sm">Total Visits</p>
+          <h2 class="text-3xl font-bold mt-1" id="stat-visits">0</h2>
+          <p class="text-xs text-blue-400 mt-2">Live Tracking</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-[#ccff00]">
+          <p class="text-gray-400 text-sm">Project Deals</p>
+          <h2 class="text-3xl font-bold mt-1">8</h2>
+          <p class="text-xs text-gray-500 mt-2">Waiting list: 2</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <p class="text-gray-400 text-sm">Response Time</p>
+          <h2 class="text-3xl font-bold mt-1">2h</h2>
+          <p class="text-xs text-red-400 mt-2">Need improvement</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl overflow-hidden">
+        <div class="p-6 border-b border-gray-800 flex justify-between items-center">
+          <h3 class="font-bold text-lg">Incoming Messages</h3>
+          <button onclick="ambilData()" class="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-lg transition">Refresh Data</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead class="bg-black/30 text-gray-400 text-xs uppercase">
+              <tr>
+                <th class="px-6 py-4">Sender</th>
+                <th class="px-6 py-4">Email</th>
+                <th class="px-6 py-4">Message</th>
+                <th class="px-6 py-4">Time</th>
+              </tr>
+            </thead>
+            <tbody id="table-body" class="divide-y divide-gray-800">
+              <tr><td colspan="4" class="p-10 text-center text-gray-600">Memuat data...</td></tr>
             </tbody>
-    </table>
+          </table>
+        </div>
+      </div>
 
-    <script>
-        // Pakai URL dan Key yang sama dengan di script.js kamu
-        const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
-        const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
-        const _supabase = supabase.createClient(SB_URL, SB_KEY);
+    </section>
+  </main>
 
-        async function ambilData() {
-            const { data, error } = await _supabase
-                .from('contacts')
-                .select('*')
-                .order('created_at', { ascending: false });
+  <script>
+    // 1. Inisialisasi Supabase (Gunakan URL dan Key yang sama dengan script.js)
+const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
+const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
+const _supabase = supabase.createClient(SB_URL, SB_KEY);
 
-            if (error) {
-                console.error("Gagal ambil data:", error.message);
-                document.getElementById('table-body').innerHTML = `<tr><td colspan="4">Akses Ditolak! (Aktifkan RLS SELECT untuk Admin)</td></tr>`;
-                return;
-            }
+// 2. Fungsi Utama untuk Ambil Semua Data
+async function ambilDataDashboard() {
+    try {
+        console.log("Sedang memuat data dashboard...");
 
-            let html = '';
-            data.forEach(item => {
-                const tanggal = new Date(item.created_at).toLocaleString('id-ID');
-                html += `<tr>
-                    <td>${tanggal}</td>
-                    <td><b>${item.name}</b></td>
-                    <td>${item.email}</td>
-                    <td>${item.message}</td>
-                </tr>`;
-            });
-            document.getElementById('table-body').innerHTML = html;
+        // A. Ambil Data Pesan (Contacts)
+        const { data: contacts, error: errContacts } = await _supabase
+            .from('contacts')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        // B. Ambil Jumlah Pengunjung (Visits) secara Real-time
+        // Kita gunakan count: 'exact' agar database hanya menghitung baris tanpa menarik semua datanya
+        const { count: totalVisits, error: errVisits } = await _supabase
+            .from('visits')
+            .select('*', { count: 'exact', head: true });
+
+        // C. Cek jika ada error di salah satu proses
+        if (errContacts) throw errContacts;
+        if (errVisits) throw errVisits;
+
+        // --- UPDATE TAMPILAN ANGKA STATISTIK ---
+        
+        // Update Total Messages
+        const statTotalMsg = document.getElementById('stat-total');
+        if (statTotalMsg) statTotalMsg.innerText = contacts.length;
+
+        // Update Total Visits (Real-time dari tabel visits)
+        const statTotalVisits = document.getElementById('stat-visits');
+        if (statTotalVisits) {
+            statTotalVisits.innerText = totalVisits.toLocaleString('id-ID');
         }
 
-        ambilData();
-    </script>
+        // --- UPDATE TAMPILAN TABEL PESAN ---
+        const tbody = document.getElementById('table-body');
+        if (!tbody) return;
+
+        if (contacts.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="p-10 text-center text-gray-500">Belum ada pesan yang masuk.</td></tr>';
+        } else {
+            tbody.innerHTML = contacts.map(item => `
+                <tr class="hover:bg-white/5 transition border-b border-gray-800/50">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center mr-3 text-xs font-bold text-[#ccff00] border border-[#ccff00]/20">
+                                ${item.name ? item.name.charAt(0).toUpperCase() : '?'}
+                            </div>
+                            <span class="font-medium text-gray-200">${item.name}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-gray-400 text-sm">${item.email}</td>
+                    <td class="px-6 py-4 text-gray-300 text-sm italic">"${item.message}"</td>
+                    <td class="px-6 py-4 text-xs text-gray-500">
+                        ${new Date(item.created_at).toLocaleString('id-ID', { 
+                            day: 'numeric', 
+                            month: 'short', 
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        })}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+    } catch (error) {
+        console.error("Terjadi kesalahan dashboard:", error.message);
+        const tbody = document.getElementById('table-body');
+        if (tbody) {
+            tbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-red-500">Gagal memuat data: ${error.message}</td></tr>`;
+        }
+    }
+}
+
+// 3. Jalankan fungsi saat halaman admin dibuka
+document.addEventListener('DOMContentLoaded', ambilDataDashboard);
+
+// 4. Fungsi opsional untuk refresh manual jika tombol diklik
+function refreshDashboard() {
+    ambilDataDashboard();
+}
+  </script>
 </body>
 </html>
