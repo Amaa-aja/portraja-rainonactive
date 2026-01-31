@@ -14,11 +14,7 @@
     .neon-green { color: #ccff00; }
     .bg-neon-green { background-color: #ccff00; }
     .sidebar-link:hover { background: rgba(204, 255, 0, 0.1); color: #ccff00; }
-    
-    #login-overlay {
-      position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center;
-    }
-
+    #login-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
     #right-sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     .custom-scrollbar::-webkit-scrollbar { width: 5px; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
@@ -27,68 +23,76 @@
 <body>
 
   <div id="login-overlay">
-    <div class="glass-card p-10 rounded-[2rem] w-full max-w-md text-center border-gray-800">
+    <div class="glass-card p-10 rounded-[2rem] w-full max-w-md text-center border-gray-800 shadow-2xl">
       <div class="w-16 h-16 bg-neon-green rounded-2xl mx-auto mb-6 flex items-center justify-center text-black text-2xl font-bold shadow-[0_0_30px_rgba(204,255,0,0.3)]">R</div>
-      <h2 class="text-2xl font-bold">Welcome Back, Admin Raja</h2>
-      <p class="text-gray-500 text-sm mb-8 mt-2">Masuk untuk mengelola portfolio</p>
-      <div class="space-y-4">
+      <h2 class="text-2xl font-bold">Admin Access</h2>
+      <p class="text-gray-500 text-sm mb-8 mt-2">Welcomeback admin</p>
+      <div class="space-y-4 text-left">
         <input type="text" id="username" placeholder="Username" class="w-full p-4 bg-black/40 border border-gray-800 rounded-xl focus:outline-none focus:border-[#ccff00] transition">
         <input type="password" id="password" placeholder="Password" class="w-full p-4 bg-black/40 border border-gray-800 rounded-xl focus:outline-none focus:border-[#ccff00] transition">
-        <button onclick="cekLogin()" class="w-full p-4 bg-neon-green text-black font-bold rounded-xl hover:scale-[1.02] transition shadow-lg">MASUK DASHBOARD</button>
+        <button onclick="cekLogin()" class="w-full p-4 bg-neon-green text-black font-bold rounded-xl hover:scale-[1.02] transition">MASUK SEKARANG</button>
       </div>
-      <p id="login-error" class="text-red-500 text-xs mt-4 hidden italic">Akses ditolak! Username/Password salah.</p>
+      <p id="login-error" class="text-red-500 text-xs mt-4 hidden italic animate-pulse">Username atau Password salah!</p>
     </div>
   </div>
 
   <div id="dashboard-wrapper" class="hidden h-screen flex">
     
     <aside class="w-64 glass-card border-r border-gray-800 flex flex-col shrink-0">
-      <div class="p-8 text-2xl font-bold neon-green tracking-tighter">MyPortRaja-Admin</div>
+      <div class="p-8 text-2xl font-bold neon-green tracking-tighter">MyAdminRaja</div>
       <nav class="flex-1 px-4 space-y-2 mt-4">
-        <div class="p-3 bg-neon-green text-black rounded-xl font-bold flex items-center"><span class="mr-3">📊</span> Overview</div>
+        <button onclick="location.reload()" class="w-full flex items-center p-3 rounded-xl bg-neon-green text-black font-bold shadow-lg">
+          <span class="mr-3">📊</span> Overview
+        </button>
         <button onclick="toggleRightSidebar()" class="w-full sidebar-link flex items-center p-3 rounded-xl transition text-gray-400">
           <span class="mr-3">⚡</span> Quick Actions
         </button>
       </nav>
-      <div class="p-6 border-t border-gray-800">
-        <button onclick="location.reload()" class="text-gray-500 text-xs hover:text-red-400 transition italic">Secure Logout</button>
+      <div class="p-6 border-t border-gray-800 text-center">
+        <button onclick="location.reload()" class="text-gray-500 text-xs hover:text-red-400 italic">Secure Logout</button>
       </div>
     </aside>
 
     <main class="flex-1 flex flex-col min-w-0 relative">
       <header class="h-20 glass-card border-b border-gray-800 flex items-center justify-between px-8">
-        <h1 class="text-lg font-semibold tracking-wide">Command Center</h1>
-        <button onclick="refreshDashboard()" class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition text-sm">🔄 Refresh Data</button>
+        <h1 class="text-lg font-semibold tracking-wide uppercase text-xs text-gray-400">Command Center</h1>
+        <button onclick="refreshDashboard()" class="px-4 py-2 bg-gray-800 rounded-xl hover:bg-gray-700 transition text-xs flex items-center gap-2">
+           🔄 Refresh Data
+        </button>
       </header>
 
       <section class="flex-1 overflow-y-auto p-8 custom-scrollbar bg-[#080808]">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div class="glass-card p-6 rounded-2xl">
-            <p class="text-gray-400 text-xs uppercase tracking-widest">Total Messages</p>
+          <div class="glass-card p-6 rounded-3xl">
+            <p class="text-gray-500 text-[10px] uppercase tracking-widest font-bold">Total Messages</p>
             <h2 class="text-4xl font-bold mt-2 neon-green" id="stat-total">0</h2>
           </div>
-          <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500">
-            <p class="text-gray-400 text-xs uppercase tracking-widest">Latest Sender</p>
+          <div class="glass-card p-6 rounded-3xl border-l-4 border-blue-500">
+            <p class="text-gray-500 text-[10px] uppercase tracking-widest font-bold">Latest Sender</p>
             <h2 class="text-xl font-bold mt-2 truncate text-blue-400" id="stat-latest-user">-</h2>
           </div>
-          <div class="glass-card p-6 rounded-2xl border-l-4 border-yellow-500">
-            <p class="text-gray-400 text-xs uppercase tracking-widest">System Status</p>
+          <div class="glass-card p-6 rounded-3xl border-l-4 border-green-500">
+            <p class="text-gray-500 text-[10px] uppercase tracking-widest font-bold">Server Status</p>
             <h2 class="text-xl font-bold mt-2 text-green-500">ENCRYPTED</h2>
           </div>
         </div>
 
-        <div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+        <div class="glass-card rounded-3xl overflow-hidden shadow-2xl border-gray-800">
+          <div class="p-5 border-b border-gray-800 bg-white/[0.02]">
+             <h3 class="text-sm font-bold uppercase tracking-widest text-gray-400">Inbox Klien</h3>
+          </div>
           <table class="w-full text-left">
             <thead class="bg-black/40 text-gray-500 text-[10px] uppercase tracking-widest font-bold">
               <tr>
                 <th class="px-6 py-4">Sender</th>
-                <th class="px-6 py-4">Email</th>
-                <th class="px-6 py-4">Message</th>
+                <th class="px-6 py-4">Contact Detail</th>
+                <th class="px-6 py-4">Message Preview</th>
                 <th class="px-6 py-4">Actions</th>
               </tr>
             </thead>
             <tbody id="table-body" class="divide-y divide-gray-800/50 text-sm">
-              </tbody>
+              <tr><td colspan="4" class="p-10 text-center animate-pulse">Menghubungkan ke Supabase...</td></tr>
+            </tbody>
           </table>
         </div>
       </section>
@@ -99,18 +103,20 @@
         <h3 class="font-bold text-sm neon-green uppercase tracking-widest">Quick Controls</h3>
         <button onclick="toggleRightSidebar()" class="text-gray-500 hover:text-white text-xl">✕</button>
       </div>
-      <div class="p-8 space-y-8">
+      <div class="p-8 space-y-10">
         <div>
-          <label class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-4 block">Main Website</label>
+          <label class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-4 block italic">Portfolio Status</label>
           <div class="flex items-center justify-between p-4 bg-white/[0.03] rounded-2xl border border-gray-800">
-            <span class="text-sm">Maintenance</span>
-            <input type="checkbox" onchange="alert('Maintenance mode synced!')" class="w-10 h-5 appearance-none bg-gray-700 rounded-full checked:bg-[#ccff00] relative transition-all cursor-pointer before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:rounded-full before:top-[2px] before:left-[2px] checked:before:left-[22px] before:transition-all">
+            <span class="text-sm">Maintenance Mode</span>
+            <input type="checkbox" id="maintenance-toggle" onchange="toggleMaintenance(this)" class="w-10 h-5 appearance-none bg-gray-700 rounded-full checked:bg-[#ccff00] relative transition-all cursor-pointer before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:rounded-full before:top-[2px] before:left-[2px] checked:before:left-[22px] before:transition-all">
           </div>
+          <p class="text-[9px] text-gray-500 mt-3 px-2">Jika aktif, pengunjung index.html akan melihat layar pemeliharaan.</p>
         </div>
+
         <div class="space-y-3">
-          <label class="text-[10px] text-gray-500 uppercase font-bold tracking-widest block">Broadcast Tool</label>
-          <button class="w-full p-4 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-xl text-xs text-left hover:bg-blue-500/20 transition">✉️ Mass Email (Soon)</button>
-          <button class="w-full p-4 bg-green-500/10 text-green-400 border border-green-500/20 rounded-xl text-xs text-left hover:bg-green-500/20 transition">💬 WhatsApp Template</button>
+          <label class="text-[10px] text-gray-500 uppercase font-bold tracking-widest block italic">Other Tools</label>
+          <button onclick="alert('Fitur segera hadir!')" class="w-full p-4 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-2xl text-xs text-left hover:bg-blue-500/20 transition">📧 Blast Email Klien</button>
+          <button onclick="alert('Fitur segera hadir!')" class="w-full p-4 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-2xl text-xs text-left hover:bg-purple-500/20 transition">📁 Update Project List</button>
         </div>
       </div>
     </aside>
@@ -118,7 +124,12 @@
   </div>
 
   <script>
-    // 1. LOGIN LOGIC
+    // Konfigurasi Supabase
+    const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
+    const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
+    const _supabase = supabase.createClient(SB_URL, SB_KEY);
+
+    // 1. Fungsi Login
     function cekLogin() {
       const u = document.getElementById('username').value;
       const p = document.getElementById('password').value;
@@ -126,42 +137,81 @@
         document.getElementById('login-overlay').style.display = 'none';
         document.getElementById('dashboard-wrapper').classList.remove('hidden');
         ambilDataDashboard();
+        syncMaintenanceToggle(); // Cek status maintenance dari DB saat login
       } else {
         document.getElementById('login-error').classList.remove('hidden');
       }
     }
 
-    // 2. TOGGLE SIDEBAR
+    // 2. Toggle Sidebar Kanan
     function toggleRightSidebar() {
       document.getElementById('right-sidebar').classList.toggle('translate-x-full');
     }
 
-    // 3. SUPABASE LOGIC
-    const SB_URL = "https://whimyvnksfealpzldjxc.supabase.co";
-    const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoaW15dm5rc2ZlYWxwemxkanhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODExNjksImV4cCI6MjA4NTM1NzE2OX0.-9DeqlnoSwukYdWVwUTEkRJm15wKZtmXni1eil6ZREQ"; 
-    const _supabase = supabase.createClient(SB_URL, SB_KEY);
-
+    // 3. Ambil Data dari Supabase
     async function ambilDataDashboard() {
       try {
-        const { data: contacts, error } = await _supabase.from('contacts').select('*').order('created_at', { ascending: false });
+        const { data: contacts, error } = await _supabase
+          .from('contacts')
+          .select('*')
+          .order('created_at', { ascending: false });
+
         if (error) throw error;
 
+        // Update Stats
         document.getElementById('stat-total').innerText = contacts.length;
-        document.getElementById('stat-latest-user').innerText = contacts.length > 0 ? contacts[0].name : "Empty";
+        document.getElementById('stat-latest-user').innerText = contacts.length > 0 ? contacts[0].name : "No Message";
 
+        // Render Table
         const tbody = document.getElementById('table-body');
+        if (contacts.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" class="p-10 text-center text-gray-500">Belum ada pesan masuk.</td></tr>';
+          return;
+        }
+
         tbody.innerHTML = contacts.map(item => `
           <tr class="hover:bg-white/[0.02] transition">
-            <td class="px-6 py-5 font-bold text-gray-200 underline decoration-neon-green/30 decoration-2 underline-offset-4">${item.name}</td>
+            <td class="px-6 py-5">
+              <div class="font-bold text-gray-200 underline decoration-neon-green/30 decoration-2 underline-offset-4">${item.name}</div>
+              <div class="text-[10px] text-gray-500 mt-1">${new Date(item.created_at).toLocaleString('id-ID')}</div>
+            </td>
             <td class="px-6 py-5 text-gray-400 font-mono text-xs">${item.email}</td>
-            <td class="px-6 py-5 text-gray-300 italic truncate max-w-[200px]">"${item.message}"</td>
+            <td class="px-6 py-5 text-gray-300 italic truncate max-w-[150px]">"${item.message}"</td>
             <td class="px-6 py-5 flex gap-2">
-              <button onclick="window.open('mailto:${item.email}')" class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-md text-[10px] uppercase font-bold hover:bg-blue-500/40">Email</button>
-              <button onclick="alert('Coming soon!')" class="px-3 py-1 bg-green-500/20 text-green-400 rounded-md text-[10px] uppercase font-bold hover:bg-green-500/40 text-nowrap">Direct WA</button>
+              <button onclick="window.open('mailto:${item.email}')" class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg text-[10px] font-bold hover:bg-blue-500/40 uppercase tracking-tighter transition">Email</button>
+              <button onclick="alert('Direct WA membutuhkan kolom No HP di database!')" class="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg text-[10px] font-bold hover:bg-green-500/40 uppercase tracking-tighter transition text-nowrap">Direct WA</button>
             </td>
           </tr>
         `).join('');
-      } catch (e) { console.error(e.message); }
+      } catch (e) { console.error("Fetch Error:", e.message); }
+    }
+
+    // 4. Logika Maintenance Mode (Update ke DB)
+    async function toggleMaintenance(checkbox) {
+      const status = checkbox.checked;
+      const { error } = await _supabase
+        .from('settings')
+        .update({ is_maintenance: status })
+        .eq('id', 1); // Memastikan Row ID 1 di tabel settings yang diubah
+
+      if (error) {
+        alert("Gagal sinkron database: " + error.message);
+        checkbox.checked = !status;
+      } else {
+        alert(status ? "Maintenance AKTIF: Website utama tertutup." : "Website ONLINE: Kembali normal.");
+      }
+    }
+
+    // 5. Sinkronisasi Tombol dengan Database saat Refresh
+    async function syncMaintenanceToggle() {
+      const { data, error } = await _supabase
+        .from('settings')
+        .select('is_maintenance')
+        .single();
+      
+      if (data) {
+        document.getElementById('maintenance-toggle').checked = data.is_maintenance;
+      }
     }
 
     function refreshDashboard() { ambilDataDashboard(); }

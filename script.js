@@ -650,3 +650,16 @@ if (contactForm) {
     }
   });
 }
+
+async function cekMaintenance() {
+  const { data } = await _supabase.from('settings').select('is_maintenance').single();
+  
+  if (data && data.is_maintenance) {
+    const screen = document.getElementById('maintenance-screen');
+    if (screen) {
+      screen.style.display = 'flex'; // Munculkan layar
+      document.body.style.overflow = 'hidden'; // Kunci scroll
+    }
+  }
+}
+cekMaintenance();
