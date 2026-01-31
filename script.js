@@ -652,14 +652,26 @@ if (contactForm) {
 }
 
 async function cekMaintenance() {
-  const { data } = await _supabase.from('settings').select('is_maintenance').single();
-  
-  if (data && data.is_maintenance) {
-    const screen = document.getElementById('maintenance-screen');
-    if (screen) {
-      screen.style.display = 'flex'; // Munculkan layar
-      document.body.style.overflow = 'hidden'; // Kunci scroll
+  try {
+    // Pastikan _supabase sudah didefinisikan di atas
+    const { data, error } = await _supabase
+      .from('settings')
+      .select('is_maintenance')
+      .single();
+
+    if (error) return; // Diam saja kalau error agar web tidak rusak
+
+    if (data && data.is_maintenance) {
+      const screen = document.getElementById('maintenance-screen');
+      if (screen) {
+        screen.style.display = 'flex'; 
+        document.body.style.overflow = 'hidden'; 
+      }
     }
+  } catch (err) {
+    console.log("Maintenance Check Off");
   }
 }
+
+// Jalankan fungsi
 cekMaintenance();
